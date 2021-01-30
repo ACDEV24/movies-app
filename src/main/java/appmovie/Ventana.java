@@ -17,7 +17,6 @@ public class Ventana extends JFrame {
     private JLabel label4;
     private JLabel label5;
     
-    
     FondoPanel fondo = new FondoPanel();
     
     public class FondoPanel extends JPanel {
@@ -27,9 +26,9 @@ public class Ventana extends JFrame {
         @Override
         public void paint(Graphics g) {
             
-            image = new ImageIcon(getClass().getResource("/imagenes/fondos-de-pantalla-canalapps.jpg")).getImage();
-            
-            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+//            image = new ImageIcon(getClass().getResource("/imagenes/fondos-de-pantalla-canalapps.jpg")).getImage();
+//            
+//            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             
             setOpaque(false);
             
@@ -61,7 +60,7 @@ public class Ventana extends JFrame {
         panel.setBackground(Color.LIGHT_GRAY);
         panel.setLayout(null);
         
-        label1 = new JLabel("PRIMERW PELICULA");
+        label1 = new JLabel("PRIMERA PELICULA");
         label1.setForeground(Color.WHITE);
         label1.setBounds(20, 428, 800, 100);
         

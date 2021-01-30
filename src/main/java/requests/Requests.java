@@ -5,7 +5,12 @@
  */
 package requests;
 
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import models.Movie;
 
 /**
  *
@@ -13,14 +18,25 @@ import java.io.IOException;
  */
 public class Requests {
     
-    public static void getAllMovies() throws IOException {
+    public static List<Movie> getAllMovies() throws IOException {
+        
+        List<Movie> movies = new ArrayList<>();
         
         try (
             java.util.Scanner s = new java.util.Scanner(
-                new java.net.URL("https://api.themoviedb.org/3/movie/now_playing?api_key=df44aabf39ca1b52f3ba3b1512396fdd&language=en-US&page=1").openStream()
+                new java.net.URL("https://api.themoviedb.org/3/movie/now_playing?api_key=df44aabf39ca1b52f3ba3b1512396fdd&language=es-ES&page=1").openStream()
             )
         ) {
-            System.out.println(s.useDelimiter("\\A").next());
+            
+            final String response = s.useDelimiter("\\A").next();
+            
+            final HashMap<String, Object> map = new Gson().fromJson(response, HashMap.class);
+
+            movies = (List) map.get("results");
+            
+            System.out.println(movies.get(2));
           }
+        
+        return movies;
     }
 }
