@@ -1,13 +1,23 @@
 package appmovie;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import models.Movie;
 
 public class Ventana extends JFrame {
     
@@ -17,29 +27,17 @@ public class Ventana extends JFrame {
     private JLabel label4;
     private JLabel label5;
     
-    FondoPanel fondo = new FondoPanel();
-    
-    public class FondoPanel extends JPanel {
-        
-        private Image image;
-        
-        @Override
-        public void paint(Graphics g) {
-            
-//            image = new ImageIcon(getClass().getResource("/imagenes/fondos-de-pantalla-canalapps.jpg")).getImage();
-//            
-//            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            
-            setOpaque(false);
-            
-            super.paint(g);
-            
-        }
-        
-    }
+    List<Movie> movies = new ArrayList<>();
+    int index = 0;
     
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public Ventana() {
+    public Ventana(List<Movie> movies) {
+        
+        this.movies = movies;
+        
+        final FondoPanel fondo = new FondoPanel(
+                movies.get(index).backdrop_path
+        );
         
         this.setContentPane(fondo);
         
@@ -48,6 +46,45 @@ public class Ventana extends JFrame {
         MostrarElementos();
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    public class FondoPanel extends JPanel {
+        
+        final String imageURL;
+
+        FondoPanel(String url) {
+            this.imageURL = url;
+        }
+        
+        private Image image;
+        private String basePath = "https://image.tmdb.org/t/p/original";
+        
+        @Override
+        public void paint(Graphics g) {
+            
+            URL url = null;
+            try {
+                url = new URL(basePath + imageURL);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            BufferedImage c = null;
+            try {
+                c = ImageIO.read(url);
+            } catch (IOException ex) {
+                Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            ImageIcon imageIcon = new ImageIcon(c);
+            
+            this.image = imageIcon.getImage();
+            g.drawImage(this.image, 0, 0, getWidth(), getHeight(), this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
         
     }
     
@@ -85,13 +122,22 @@ public class Ventana extends JFrame {
         panel.add(label3);
         panel.add(label4);
         panel.add(label5);
-        
        
         this.setSize(800, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(rootPaneCheckingEnabled);
         this.setResizable(false);
-        
+    }
+}
+
+class MovieItem extends JComponent {
+    
+    final Movie movie;
+    
+    public MovieItem(Movie movie) {
+        this.movie = movie;
     }
     
+    
 }
+
