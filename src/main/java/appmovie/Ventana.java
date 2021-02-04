@@ -1,7 +1,6 @@
 package appmovie;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -13,25 +12,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.ScrollPaneConstants;
 import models.Movie;
 
 public class Ventana extends JFrame {
-    
-    private JLabel label1;
-    private JLabel label2;
-    private JLabel label3;
-    private JLabel label4;
-    private JLabel label5;
-    
+
     List<Movie> movies = new ArrayList<>();
     int index = 0;
     
@@ -41,7 +29,7 @@ public class Ventana extends JFrame {
         this.movies = movies;
         
         final FondoPanel fondo = new FondoPanel(
-                movies.get(index).backdrop_path
+            movies.get(index).backdrop_path
         );
         
         this.setContentPane(fondo);

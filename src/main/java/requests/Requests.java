@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import models.Actor;
+import models.Cast;
 import models.Movie;
 
 public class Requests {
     
-    public List<Movie> getAllMovies(String page) throws IOException {
+    public List<Movie> getMovies(String page) throws IOException {
         
         List<Movie> tempMovies = new ArrayList<>();
 
@@ -44,9 +44,9 @@ public class Requests {
         return movies;
     }
     
-    public List<Actor> getAllActors(String id) throws IOException {
+    public List<Cast> getCast(String id) throws IOException {
         
-        List<Actor> tempActors = new ArrayList<>();
+        List<Cast> tempActors = new ArrayList<>();
 
         final ObjectMapper mapper = new ObjectMapper();
         
@@ -60,16 +60,16 @@ public class Requests {
             
             final Map<String, Object> map = mapper.readValue(response, Map.class);
             
-            tempActors = (List<Actor>) map.get("cast");
+            tempActors = (List<Cast>) map.get("cast");
           }
         
-        List<Actor> movies = new ArrayList<Actor>();
+        List<Cast> movies = new ArrayList<Cast>();
 
         for (int i = 0; i < 10; i++) {
             
-            final Actor movie = mapper.convertValue(
+            final Cast movie = mapper.convertValue(
                 tempActors.get(i),
-                Actor.class
+                Cast.class
             );
             
             movies.add(movie);

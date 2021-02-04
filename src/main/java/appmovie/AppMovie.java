@@ -2,7 +2,7 @@ package appmovie;
 
 import java.io.IOException;
 import java.util.List;
-import models.Actor;
+//import models.Cast;
 import models.Movie;
 import requests.Requests;
 
@@ -12,8 +12,13 @@ public class AppMovie {
 
         final Requests requests = new Requests();
 
-        final List<Movie> movies = requests.getAllMovies("1");
-        final List<Actor> actors = requests.getAllActors("464052");
+        final List<Movie> movies = requests.getMovies("1");
+        
+//        for (Movie movie : movies) {
+//            
+//        }
+        
+//        final List<Cast> actors = requests.getAllCast("464052");
 
         final Ventana vent = new Ventana(movies);
         vent.setVisible(true);

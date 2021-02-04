@@ -3,7 +3,8 @@ package models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public final class Actor {
+public final class Cast {
+
     public final boolean adult;
     public final long gender;
     public final long id;
@@ -18,7 +19,7 @@ public final class Actor {
     public final long order;
 
     @JsonCreator
-    public Actor(
+    public Cast(
         @JsonProperty("adult") boolean adult,
         @JsonProperty("gender") long gender,
         @JsonProperty("id") long id,
