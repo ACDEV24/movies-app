@@ -21,7 +21,6 @@ import models.Movie;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JScrollPane;
 
-
 class VentanaDos extends JFrame{
     
     private JButton bton1;
