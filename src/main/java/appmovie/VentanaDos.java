@@ -13,27 +13,36 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import models.Movie;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JScrollPane;
 
-public class Ventana extends JFrame {
 
-    JLabel label1;
-    List<Movie> movies = new ArrayList<>();
+class VentanaDos extends JFrame{
+    
+    private JButton bton1;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JScrollPane barra;
+    private final List<Movie> movies;
+    
+    List<Movie> movies1 = new ArrayList<>();
     int index = 0;
     
-    @SuppressWarnings("OverridableMethodCallInConstructor")
-    public Ventana(List<Movie> movies) {
-        
+    public VentanaDos(List<Movie> movies){
+    
         this.movies = movies;
         
-        final FondoPanel fondo = new FondoPanel(
+        final VentanaDos.FondoPanel fondo = new VentanaDos.FondoPanel(
             movies.get(index).backdrop_path
         );
         
-        this.setContentPane(fondo);
+        setContentPane(fondo);
         
         setTitle("MOVIES APP");
         
@@ -41,13 +50,13 @@ public class Ventana extends JFrame {
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
-    public class FondoPanel extends JPanel {
+    
+     public class FondoPanel extends JPanel {
         
         final String imageURL;
 
         FondoPanel(String url) {
-            this.imageURL = url;
+            imageURL = url;
         }
         
         private Image image;
@@ -73,71 +82,54 @@ public class Ventana extends JFrame {
             
             ImageIcon imageIcon = new ImageIcon(c);
             
-            this.image = imageIcon.getImage();
+            image = imageIcon.getImage();
             g.drawImage(this.image, 0, 0, getWidth(), getHeight(), this);
             
             setOpaque(false);
             
             super.paint(g);
         }
-        
     }
-    
+     
     private void MostrarElementos() {
 
         //Generando otro panel
         JPanel panel = (JPanel) this.getContentPane();
 
-        //Modificamos el panel
+        //
         panel.setBackground(Color.LIGHT_GRAY);
         panel.setLayout(null);
         
-        label1 = new JLabel("PRIMERA PELICULA");
+        label1 = new JLabel("LA MUJER MARAVILLA");
         label1.setForeground(Color.WHITE);
-        label1.setBounds(20, 428, 800, 100);
-//        
-//        label2 = new JLabel("SEGUNDA PELICULA");
-//        label2.setForeground(Color.WHITE);
-//        label2.setBounds(170, 428, 800, 100);
-//        
-//        label3 = new JLabel("TERCERA PELICULA");
-//        label3.setForeground(Color.WHITE);
-//        label3.setBounds(340, 428, 800, 100);
-//        
-//        label4 = new JLabel("CUARTA PELICULA");
-//        label4.setForeground(Color.WHITE);
-//        label4.setBounds(500, 428, 800, 100);
-//        
-//        label5 = new JLabel("QUINTA PELICULA");
-//        label5.setForeground(Color.WHITE);
-//        label5.setBounds(670, 428, 800, 100);
-//       
+        label1.setBounds(325, 200, 800, 100);
+        
+        label2 = new JLabel("La acción se traslada a mediados de la década de los años 80, donde Diana enfrenta nuevos peligros y aliados.");
+        label2.setForeground(Color.BLACK);
+        label2.setBounds(100, 250, 800, 100);
+        
+        label3 = new JLabel("Casting");
+        label3.setForeground(Color.WHITE);
+        label3.setBounds(110, 428, 800, 100);
+        
+        JButton bton1 = new JButton();
+        bton1.setBounds(20, 20, 89 ,48);
+        ImageIcon back = new ImageIcon("back.png");
+        bton1.setIcon(new ImageIcon(back.getImage().getScaledInstance(bton1.getWidth(), bton1.getHeight(), Image.SCALE_SMOOTH)));
+//        bton1.setBackground(Color.gray);
+        
+        barra = new JScrollPane();
+        barra.setBounds(20, 20, 80,30);
+            
         panel.add(label1);
-//        panel.add(label2);
-//        panel.add(label3);
-//        panel.add(label4);
-//        panel.add(label5);
-       
-        this.setSize(800, 600);
-        this.setLocationRelativeTo(null);
-        this.setVisible(rootPaneCheckingEnabled);
-        this.setResizable(false);
-    }
-}
-
-class MovieTitle extends JFrame {
-    
-    public String text;
-    
-    public MovieTitle(String text) {
-        this.text = text;
-        this.create();
-    }
-    
-    JLabel label;
-
-    public void create() {
-        this.label = new javax.swing.JLabel(this.text);
-        label.setBounds(175, 100, 200, 100);
+        panel.add(label2);
+        panel.add(label3);
+        panel.add(bton1);
+        panel.add(barra);
+        
+        setBounds(0, 0,800,600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
     }
 }

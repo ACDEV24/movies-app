@@ -21,6 +21,9 @@ public class AppMovie {
 //        final List<Cast> actors = requests.getAllCast("464052");
 
         final Ventana vent = new Ventana(movies);
+//        final VentanaDos vent2 = new VentanaDos(movies);
+        
         vent.setVisible(true);
+//       vent2.setVisible(true);
     }
 }
