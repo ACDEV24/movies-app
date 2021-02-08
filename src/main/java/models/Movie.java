@@ -19,6 +19,13 @@ public final class Movie {
     public final double vote_average;
     public final long vote_count;
 
+    public final String url;
+    public final boolean has_subtitles;
+    public final String origin_country;
+    public final String duration;
+    public final String production_date;
+    public final String classification;
+
     @JsonCreator
     public Movie(
         @JsonProperty("adult") boolean adult,
@@ -34,7 +41,14 @@ public final class Movie {
         @JsonProperty("title") String title,
         @JsonProperty("video") boolean video,
         @JsonProperty("vote_average") double vote_average,
-        @JsonProperty("vote_count") long vote_count
+        @JsonProperty("vote_count") long vote_count,
+        
+        @JsonProperty("url") String url,
+        @JsonProperty("has_subtitles") boolean has_subtitles,
+        @JsonProperty("origin_country") String origin_country,
+        @JsonProperty("duration") String duration,
+        @JsonProperty("production_date") String production_date,
+        @JsonProperty("classification") String classification
     ){
         this.adult = adult;
         this.backdrop_path = backdrop_path;
@@ -50,5 +64,12 @@ public final class Movie {
         this.video = video;
         this.vote_average = vote_average;
         this.vote_count = vote_count;
+        
+        this.url = url;
+        this.has_subtitles = has_subtitles;
+        this.origin_country = origin_country;
+        this.duration = duration;
+        this.production_date = production_date;
+        this.classification = classification;
     }
 }

@@ -19,6 +19,7 @@ public class Requests {
         try (
             java.util.Scanner s = new java.util.Scanner(
                 new java.net.URL("https://api.themoviedb.org/3/movie/now_playing?api_key=df44aabf39ca1b52f3ba3b1512396fdd&language=es-ES&page=" + page).openStream()
+//                new java.net.URL("http://192.168.1.2:3000/movies" + page).openStream()
             )
         ) {
             
