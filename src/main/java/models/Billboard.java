@@ -2,6 +2,7 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.json.JSONObject;
 
 public final class Billboard {
 
@@ -33,5 +34,21 @@ public final class Billboard {
         this.chairs = chairs;
         this.name = name;
         this.promotions = promotions;
+    }
+    
+    public JSONObject toJson() {
+        
+        final JSONObject billboard = new JSONObject();
+        
+        billboard.put("details", this.details);
+        billboard.put("weekday", this.weekday);
+        billboard.put("start_at", this.start_at);
+        billboard.put("room", this.room);
+        billboard.put("movie", this.movie);
+        billboard.put("chairs", this.chairs);
+        billboard.put("name", this.name);
+        billboard.put("promotions", this.promotions);
+        
+        return billboard;
     }
 }

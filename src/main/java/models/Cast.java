@@ -2,48 +2,57 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.json.JSONObject;
 
 public final class Cast {
 
     public final boolean adult;
     public final long gender;
-    public final long id;
-    public final String known_for_department;
+    public final String id;
+    public final String role;
     public final String name;
     public final String original_name;
     public final double popularity;
-    public final String profile_path;
-    public final long cast_id;
+    public final String profile_picture;
     public final String character;
-    public final String credit_id;
-    public final long order;
 
     @JsonCreator
     public Cast(
         @JsonProperty("adult") boolean adult,
         @JsonProperty("gender") long gender,
-        @JsonProperty("id") long id,
-        @JsonProperty("known_for_department") String known_for_department,
+        @JsonProperty("id") String id,
+        @JsonProperty("role") String role,
         @JsonProperty("name") String name,
         @JsonProperty("original_name") String original_name,
         @JsonProperty("popularity") double popularity,
-        @JsonProperty("profile_path") String profile_path,
+        @JsonProperty("profile_picture") String profile_picture,
         @JsonProperty("cast_id") long cast_id,
-        @JsonProperty("character") String character,
-        @JsonProperty("credit_id") String credit_id,
-        @JsonProperty("order") long order
+        @JsonProperty("character") String character
     ){
         this.adult = adult;
         this.gender = gender;
         this.id = id;
-        this.known_for_department = known_for_department;
+        this.role = role;
         this.name = name;
         this.original_name = original_name;
         this.popularity = popularity;
-        this.profile_path = profile_path;
-        this.cast_id = cast_id;
+        this.profile_picture = profile_picture;
         this.character = character;
-        this.credit_id = credit_id;
-        this.order = order;
+    }
+    
+    public JSONObject toJson() {
+        
+        final JSONObject cast = new JSONObject();
+        
+        cast.put("adult", this.adult);
+        cast.put("gender", this.gender);
+        cast.put("id", this.id);
+        cast.put("role", this.role);
+        cast.put("original_name", this.original_name);
+        cast.put("popularity", this.popularity);
+        cast.put("profile_picture", this.profile_picture);
+        cast.put("character", this.character);
+        
+        return cast;
     }
 }

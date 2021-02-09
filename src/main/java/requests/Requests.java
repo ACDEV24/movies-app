@@ -1,79 +1,59 @@
 package requests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import models.Cast;
 import models.Movie;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Requests {
     
-    public List<Movie> getMovies(String page) throws IOException {
+    public boolean createMovie(Movie movie) {
         
-        List<Movie> tempMovies = new ArrayList<>();
-
-        final ObjectMapper mapper = new ObjectMapper();
+        final JSONObject movieJson = movie.toJson();
         
-        try (
-            java.util.Scanner s = new java.util.Scanner(
-                new java.net.URL("https://api.themoviedb.org/3/movie/now_playing?api_key=df44aabf39ca1b52f3ba3b1512396fdd&language=es-ES&page=" + page).openStream()
-//                new java.net.URL("http://192.168.1.2:3000/movies" + page).openStream()
-            )
-        ) {
-            
-            final String response = s.useDelimiter("\\A").next();
-            
-            final Map<String, Object> map = mapper.readValue(response, Map.class);
-            
-            tempMovies = (List<Movie>) map.get("results");
-          }
+        final boolean response = this.saveMovie(movieJson);
         
-        List<Movie> movies = new ArrayList<Movie>();
-
-        for (int i = 0; i < 10; i++) {
-            
-            final Movie movie = mapper.convertValue(
-                tempMovies.get(i),
-                Movie.class
-            );
-            
-            movies.add(movie);
-        }
-        
-        return movies;
+        return response;
     }
     
-    public List<Cast> getCast(String id) throws IOException {
-        
-        List<Cast> tempActors = new ArrayList<>();
+    public boolean saveMovie(JSONObject movieJson) {
 
-        final ObjectMapper mapper = new ObjectMapper();
-        
-        try (
-            java.util.Scanner s = new java.util.Scanner(
-                new java.net.URL("https://api.themoviedb.org/3/movie/" + id +"/credits?api_key=df44aabf39ca1b52f3ba3b1512396fdd&language=es&page=1").openStream()
-            )
-        ) {
+        try (FileWriter file = new FileWriter("movies.json")) {
             
-            final String response = s.useDelimiter("\\A").next();
+            JSONArray jsonArray = this.getMovies();
             
-            final Map<String, Object> map = mapper.readValue(response, Map.class);
+            if(jsonArray == null) {
+                jsonArray = new JSONArray();
+            }
             
-            tempActors = (List<Cast>) map.get("cast");
-          }
-        
-        List<Cast> movies = new ArrayList<Cast>();
+            jsonArray.put(movieJson);
 
-        for (int i = 0; i < 10; i++) {
+            file.write(jsonArray.toString());
+            file.flush();
+
+        } catch (IOException e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public JSONArray getMovies() {
+        
+        JSONArray movies = new JSONArray();
+        
+        try {
+            JSONParser parser = new JSONParser();
             
-            final Cast movie = mapper.convertValue(
-                tempActors.get(i),
-                Cast.class
+            movies = (JSONArray) parser.parse(
+                new FileReader("movies.json")
             );
-            
-            movies.add(movie);
+        } catch (IOException | ParseException ex) {
+            return null;
         }
         
         return movies;

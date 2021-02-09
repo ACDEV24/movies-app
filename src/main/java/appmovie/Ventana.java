@@ -30,7 +30,7 @@ public class Ventana extends JFrame {
         this.movies = movies;
         
         final FondoPanel fondo = new FondoPanel(
-            movies.get(index).backdrop_path
+            movies.get(index).picture
         );
         
         this.setContentPane(fondo);
