@@ -23,17 +23,17 @@ public class Ventana extends JFrame {
     JLabel label1;
     List<Movie> movies = new ArrayList<>();
     int index = 0;
-    
-    @SuppressWarnings("OverridableMethodCallInConstructor")
+
     public Ventana(List<Movie> movies) {
         
         this.movies = movies;
         
-        final FondoPanel fondo = new FondoPanel(
-            movies.get(index).picture
-        );
-        
-        this.setContentPane(fondo);
+        if(!this.movies.isEmpty()) {
+
+            final FondoPanel fondo = new FondoPanel(movies.get(index).getPicture());
+
+            this.setContentPane(fondo);
+        }
         
         setTitle("MOVIES APP");
         

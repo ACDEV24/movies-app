@@ -38,8 +38,7 @@ class VentanaDos extends JFrame{
         this.movies = movies;
         
         final VentanaDos.FondoPanel fondo = new VentanaDos.FondoPanel(
-            movies.get(index).picture
-        );
+                movies.get(index).getPicture());
         
         setContentPane(fondo);
         

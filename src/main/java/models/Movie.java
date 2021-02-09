@@ -5,24 +5,24 @@ import org.json.JSONObject;
 
 public final class Movie {
     
-    public final boolean adult;
-    public final String picture;
-    public final String id;
-    public final String original_language;
-    public final String original_title;
-    public final String overview;
-    public final double popularity;
-    public final String poster_picture;
-    public final String release_date;
-    public final String title;
-    public final double vote_average;
-    public final long vote_count;
-    public final String url;
-    public final boolean has_subtitles;
-    public final String origin_country;
-    public final String duration;
-    public final String production_date;
-    public final String classification;
+    private boolean adult;
+    private String picture;
+    private String id;
+    private String original_language;
+    private String original_title;
+    private String overview;
+    private double popularity;
+    private String poster_picture;
+    private String release_date;
+    private String title;
+    private double vote_average;
+    private long vote_count;
+    private String url;
+    private boolean has_subtitles;
+    private String origin_country;
+    private String duration;
+    private String production_date;
+    private String classification;
 
     @JsonCreator
     public Movie(
@@ -89,5 +89,151 @@ public final class Movie {
         movie.put("classification", this.classification);
         
         return movie;
+    }
+    
+    public Movie() {}
+
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
+    }
+
+    public String getOriginal_title() {
+        return original_title;
+    }
+
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(double popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getPoster_picture() {
+        return poster_picture;
+    }
+
+    public void setPoster_picture(String poster_picture) {
+        this.poster_picture = poster_picture;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(double vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public long getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(long vote_count) {
+        this.vote_count = vote_count;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isHas_subtitles() {
+        return has_subtitles;
+    }
+
+    public void setHas_subtitles(boolean has_subtitles) {
+        this.has_subtitles = has_subtitles;
+    }
+
+    public String getOrigin_country() {
+        return origin_country;
+    }
+
+    public void setOrigin_country(String origin_country) {
+        this.origin_country = origin_country;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getProduction_date() {
+        return production_date;
+    }
+
+    public void setProduction_date(String production_date) {
+        this.production_date = production_date;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
     }
 }
