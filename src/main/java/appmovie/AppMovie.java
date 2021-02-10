@@ -10,7 +10,7 @@ public class AppMovie {
 
     public static void main(String[] args) throws IOException {
         
-        final Requests requests = new Requests();
+      /*  final Requests requests = new Requests();
 
         List<Movie> movies = requests.getAllMovies();
         
@@ -19,7 +19,10 @@ public class AppMovie {
         }
 
         final Ventana vent = new Ventana(movies);
+
+*/
         
-        vent.setVisible(true);
+      Ventana vent1 = new Ventana();
+        vent1.setVisible(true);
     }
 }

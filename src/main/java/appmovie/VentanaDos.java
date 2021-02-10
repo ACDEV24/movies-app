@@ -33,6 +33,7 @@ class VentanaDos extends JFrame{
     List<Movie> movies1 = new ArrayList<>();
     int index = 0;
     
+     
     public VentanaDos(List<Movie> movies){
     
         this.movies = movies;
