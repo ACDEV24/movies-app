@@ -22,7 +22,7 @@ public class AppMovie {
 
 */
         
-      Ventana vent1 = new Ventana();
+      VentanaInicial vent1 = new VentanaInicial();
         vent1.setVisible(true);
     }
 }
