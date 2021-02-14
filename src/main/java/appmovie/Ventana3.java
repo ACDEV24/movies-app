@@ -9,8 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import models.Movie;
+import requests.Requests;
 
 public class Ventana3 extends JFrame {
+    
+    final Requests requests = new Requests();
 
     //Etiquetas
     private JLabel letra1;
@@ -189,11 +193,17 @@ public class Ventana3 extends JFrame {
         this.setResizable(false);
 
         oyente1 = new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                final Movie movie = new Movie();
+                movie.setTitle(cja1.getText());
+                
+                requests.createMovie(movie);
             }
         };
+
         buton1.addActionListener(oyente1);
 
         oyente2 = new ActionListener() {
@@ -202,9 +212,8 @@ public class Ventana3 extends JFrame {
 
             }
         };
-        buton2.addActionListener(oyente2);
 
-        
+        buton2.addActionListener(oyente2);
 
         oyente4 = new ActionListener() {
             @Override
