@@ -3,6 +3,7 @@ package appmovie;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,7 +27,6 @@ public class VentanaDatosPelicula extends JFrame {
     private JLabel labelClasificar;
     private JLabel labelFechaEstreno;
     private JLabel labelResumen;
-    private JLabel labelIdentificar;
     private JLabel labelListaDirector;
 
     //Botones
@@ -43,7 +43,6 @@ public class VentanaDatosPelicula extends JFrame {
     private JTextField cjaDuraciónHoras;
     private JTextField cjaFechaEstreno;
     private JTextField cjaResumenPeli;
-    private JTextField cjaIdentificador;
     private JTextField cjaListaReparto;
 
     private ActionListener oyente1;
@@ -110,13 +109,9 @@ public class VentanaDatosPelicula extends JFrame {
         labelResumen.setForeground(Color.BLACK);
         labelResumen.setBounds(360, 210, 800, 100);
 
-        labelIdentificar = new JLabel("Identificador");
-        labelIdentificar.setForeground(Color.BLACK);
-        labelIdentificar.setBounds(20, 280, 800, 100);
-
         labelListaDirector = new JLabel("Lista de directores y reparto");
         labelListaDirector.setForeground(Color.BLACK);
-        labelListaDirector.setBounds(20, 350, 800, 100);
+        labelListaDirector.setBounds(20, 280, 800, 100);
 
         //Botones
         btonGuardarInfo = new JButton("GUARDAR INFOMACIÓN");
@@ -152,11 +147,8 @@ public class VentanaDatosPelicula extends JFrame {
         cjaResumenPeli = new JTextField();
         cjaResumenPeli.setBounds(350, 276, 300, 40);
 
-        cjaIdentificador = new JTextField();
-        cjaIdentificador.setBounds(20, 340, 300, 40);
-
         cjaListaReparto = new JTextField();
-        cjaListaReparto.setBounds(20, 420, 300, 40);
+        cjaListaReparto.setBounds(20, 340, 300, 40);
 
         panel.add(labelAlmacenajeDatos);
         panel.add(labelTitulo);
@@ -167,7 +159,6 @@ public class VentanaDatosPelicula extends JFrame {
         panel.add(labelClasificar);
         panel.add(labelFechaEstreno);
         panel.add(labelResumen);
-        panel.add(labelIdentificar);
         panel.add(labelListaDirector);
 
         panel.add(btonGuardarInfo);
@@ -183,7 +174,6 @@ public class VentanaDatosPelicula extends JFrame {
         panel.add(cjaDuraciónHoras);
         panel.add(cjaFechaEstreno);
         panel.add(cjaResumenPeli);
-        panel.add(cjaIdentificador);
         panel.add(cjaListaReparto);
 
         //Datos de la ventana
@@ -193,10 +183,17 @@ public class VentanaDatosPelicula extends JFrame {
         this.setResizable(false);
 
         oyente1 = (ActionEvent e) -> {
+
             final Movie movie = new Movie();
+            final String uuid = UUID.randomUUID().toString().replace("-", "");
             
             movie.setTitle(cjaTituloOriginal.getText());
             movie.setGender(cjaGénero.getText());
+            movie.setOriginal_language(cjaIdioma.getText());
+            movie.setDuration(cjaDuraciónHoras.getText());
+            movie.setRelease_date(cjaFechaEstreno.getText());
+            movie.setDescription(cjaResumenPeli.getText());
+            movie.setId(uuid);
             
             requests.saveMovie(movie);
         };
@@ -207,17 +204,15 @@ public class VentanaDatosPelicula extends JFrame {
         };
         
         btonBorrarInfo.addActionListener(oyente2);
-
         
-
         oyente4 = (ActionEvent e) -> {
             VentanaInicial venta = new VentanaInicial();
             
             venta.setVisible(true);
             setVisible(false);
         };
+        
         btonRegresar.addActionListener(oyente4);
-
     }
 
 }

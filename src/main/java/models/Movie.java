@@ -10,7 +10,7 @@ public final class Movie {
     private String id;
     private String original_language;
     private String original_title;
-    private String overview;
+    private String description;
     private String gender;
     private double popularity;
     private String poster_picture;
@@ -32,7 +32,7 @@ public final class Movie {
         @JsonProperty("id") String id,
         @JsonProperty("original_language") String original_language,
         @JsonProperty("original_title") String original_title,
-        @JsonProperty("overview") String overview,
+        @JsonProperty("description") String description,
         @JsonProperty("gender") String gender,
         @JsonProperty("popularity") double popularity,
         @JsonProperty("poster_picture") String poster_picture,
@@ -52,7 +52,7 @@ public final class Movie {
         this.id = id;
         this.original_language = original_language;
         this.original_title = original_title;
-        this.overview = overview;
+        this.description = description;
         this.gender = gender;
         this.popularity = popularity;
         this.poster_picture = poster_picture;
@@ -77,7 +77,7 @@ public final class Movie {
         movie.put("id", this.id);
         movie.put("original_language", this.original_language);
         movie.put("original_title", this.original_title);
-        movie.put("overview", this.overview);
+        movie.put("description", this.description);
         movie.put("gender", this.gender);
         movie.put("popularity", this.popularity);
         movie.put("poster_picture", this.poster_picture);
@@ -137,12 +137,12 @@ public final class Movie {
         this.original_title = original_title;
     }
 
-    public String getOverview() {
-        return overview;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getPopularity() {

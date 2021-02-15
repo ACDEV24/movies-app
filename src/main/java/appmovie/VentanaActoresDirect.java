@@ -64,8 +64,9 @@ public class VentanaActoresDirect extends JFrame {
         labelTittleDatos.setForeground(Color.BLACK);
         labelTittleDatos.setBounds(220, -18, 800, 100);
         
-        labelIdPelicula = new JLabel("Selecciona una pelicula");
+        labelIdPelicula = new JLabel("");
         labelIdPelicula.setForeground(Color.BLACK);
+        labelIdPelicula.setVisible(false);
         labelIdPelicula.setBounds(500, 210, 200, 150);
         
         final DefaultListModel<Movie> movies = requests.getAllMovies();
@@ -118,7 +119,7 @@ public class VentanaActoresDirect extends JFrame {
         panel.add(labelNombrePart);
         panel.add(labelCantidadPeli);
         panel.add(labelCantidadPeliDiri);
-        panel.add(labelIdPelicula);
+//        panel.add(labelIdPelicula);
 
         panel.add(btonGuardainfo);
        
@@ -140,7 +141,7 @@ public class VentanaActoresDirect extends JFrame {
         oyente1 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                System.out.println(labelIdPelicula.getText());
             }
         };
         btonGuardainfo.addActionListener(oyente1);

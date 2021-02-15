@@ -1,11 +1,11 @@
 package requests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.swing.DefaultListModel;
 import models.Movie;
 import org.json.JSONArray;
@@ -44,10 +44,14 @@ public class Requests {
         String myJson = "";
         
         try {
-            myJson = new Scanner(new File("movies.json")).useDelimiter("\\Z").next();
-        } catch (FileNotFoundException ex) {
+
+            myJson = new String(Files.readAllBytes(Paths.get("movies.json")), StandardCharsets.UTF_8);
+
+        } catch (IOException ex) {
             return null;
         }
+        
+        if(myJson.isEmpty()) return movies;
         
         movies = new JSONArray(myJson);
         

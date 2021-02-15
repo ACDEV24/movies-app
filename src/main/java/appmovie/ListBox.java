@@ -37,9 +37,7 @@ public class ListBox {
             
                 int index = list.locationToIndex(evt.getPoint());
                 
-                label.setText(movies.get(index).getTitle());
-
-                System.out.println(movies.get(index).getTitle());
+                label.setText(movies.get(index).getId());
             }
         });
 
