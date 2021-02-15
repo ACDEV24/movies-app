@@ -2,19 +2,33 @@ package appmovie;
 
 //Importaciones
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import models.Movie;
 
-public class Ventana extends JFrame {
+public class VentanaInicial extends JFrame {
 
     //Atributos gráficos
-    JButton button1;
-    JButton button2;
-    JButton button3;
-    JButton button4;
+    JButton botonDatosPeli;
+    JButton botonDatosActores;
+    JButton botonMuestraDatos;
+    JButton botonDatosCine;
 
     //Action listener objetos
     private ActionListener oyente1;
@@ -38,7 +52,7 @@ public class Ventana extends JFrame {
         }
      */
     //Elementos de la ventana
-    public Ventana() {
+    public VentanaInicial() {
         setTitle("MOVIES APP");
 
         MostrarElementos();
@@ -99,21 +113,21 @@ public class Ventana extends JFrame {
         panel.setLayout(null);
 
         //Botones
-        button1 = new JButton("DATOS PELICULAS");
-        button1.setForeground(Color.BLACK);
-        button1.setBounds(20, 480, 160, 60);
+        botonDatosPeli = new JButton("DATOS PELICULAS");
+        botonDatosPeli.setForeground(Color.BLACK);
+        botonDatosPeli.setBounds(20, 480, 160, 60);
 
-        button2 = new JButton("DATOS ACTORES");
-        button2.setForeground(Color.BLACK);
-        button2.setBounds(190, 480, 160, 60);
+        botonDatosActores = new JButton("DATOS ACTORES");
+        botonDatosActores.setForeground(Color.BLACK);
+        botonDatosActores.setBounds(190, 480, 160, 60);
 
-        button3 = new JButton("MUESTRA DE DATOS");
-        button3.setForeground(Color.BLACK);
-        button3.setBounds(600, 480, 160, 60);
+        botonMuestraDatos = new JButton("MUESTRA DE DATOS");
+        botonMuestraDatos.setForeground(Color.BLACK);
+        botonMuestraDatos.setBounds(600, 480, 160, 60);
 
-        button4 = new JButton("DATOS CINE");
-        button4.setForeground(Color.BLACK);
-        button4.setBounds(370, 480, 160, 60);
+        botonDatosCine = new JButton("DATOS CINE");
+        botonDatosCine.setForeground(Color.BLACK);
+        botonDatosCine.setBounds(370, 480, 160, 60);
 
 //        
 //        label2 = new JLabel("SEGUNDA PELICULA");
@@ -132,10 +146,10 @@ public class Ventana extends JFrame {
 //        label5.setForeground(Color.WHITE);
 //        label5.setBounds(670, 428, 800, 100);
 //       
-        panel.add(button1);
-        panel.add(button2);
-        panel.add(button3);
-        panel.add(button4);
+        panel.add(botonDatosPeli);
+        panel.add(botonDatosActores);
+        panel.add(botonMuestraDatos);
+        panel.add(botonDatosCine);
 //         panel.add(label2);
 //         panel.add(label3);
 //         panel.add(label4);
@@ -152,7 +166,7 @@ public class Ventana extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Ventana3 vent = new Ventana3();
+                VentanaDatosPelicula vent = new VentanaDatosPelicula();
 
                 vent.setVisible(true);
 
@@ -160,20 +174,20 @@ public class Ventana extends JFrame {
 
             }
         };
-        button1.addActionListener(oyente1);
+        botonDatosPeli.addActionListener(oyente1);
 
         oyente2 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Ventana4 vent4 = new Ventana4();
+                VentanaActoresDirect vent4 = new VentanaActoresDirect();
 
                 vent4.setVisible(true);
 
                 setVisible(false);
             }
         };
-        button2.addActionListener(oyente2);
+        botonDatosActores.addActionListener(oyente2);
 
         oyente3 = new ActionListener() {
             @Override
@@ -181,21 +195,21 @@ public class Ventana extends JFrame {
 
             }
         };
-        button3.addActionListener(oyente3);
+        botonMuestraDatos.addActionListener(oyente3);
         
         
          oyente4 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Ventana5 vent5 = new Ventana5();
+                VentanaDatosCine vent5 = new VentanaDatosCine();
                 
                 vent5.setVisible(true);
                 setVisible(false);
                 
             }
         };
-        button4.addActionListener(oyente4);
+        botonDatosCine.addActionListener(oyente4);
 
     }
 }

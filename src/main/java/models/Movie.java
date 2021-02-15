@@ -11,6 +11,7 @@ public final class Movie {
     private String original_language;
     private String original_title;
     private String overview;
+    private String gender;
     private double popularity;
     private String poster_picture;
     private String release_date;
@@ -32,6 +33,7 @@ public final class Movie {
         @JsonProperty("original_language") String original_language,
         @JsonProperty("original_title") String original_title,
         @JsonProperty("overview") String overview,
+        @JsonProperty("gender") String gender,
         @JsonProperty("popularity") double popularity,
         @JsonProperty("poster_picture") String poster_picture,
         @JsonProperty("release_date") String release_date,
@@ -51,6 +53,7 @@ public final class Movie {
         this.original_language = original_language;
         this.original_title = original_title;
         this.overview = overview;
+        this.gender = gender;
         this.popularity = popularity;
         this.poster_picture = poster_picture;
         this.release_date = release_date;
@@ -75,6 +78,7 @@ public final class Movie {
         movie.put("original_language", this.original_language);
         movie.put("original_title", this.original_title);
         movie.put("overview", this.overview);
+        movie.put("gender", this.gender);
         movie.put("popularity", this.popularity);
         movie.put("poster_picture", this.poster_picture);
         movie.put("release_date", this.release_date);
@@ -235,5 +239,18 @@ public final class Movie {
 
     public void setClassification(String classification) {
         this.classification = classification;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    @Override
+    public String toString() {
+        return this.getTitle();
     }
 }
