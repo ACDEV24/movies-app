@@ -1,31 +1,30 @@
 package requests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import javax.swing.DefaultListModel;
 import models.Movie;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Requests {
 
     public boolean saveMovie(Movie movie) {
         
         final JSONObject movieJson = movie.toJson();
+        
+        JSONArray jsonArray = this.getMovies();
+            if(jsonArray == null) {
+            jsonArray = new JSONArray();
+        }
+
+        jsonArray.add(movieJson);
 
         try (FileWriter file = new FileWriter("movies.json")) {
-            
-            JSONArray jsonArray = this.getMovies();
-            
-            if(jsonArray == null) {
-                jsonArray = new JSONArray();
-            }
-            
-            jsonArray.put(movieJson);
 
             file.write(jsonArray.toString());
             file.flush();
@@ -39,23 +38,18 @@ public class Requests {
     
     public JSONArray getMovies() {
         
-        JSONArray movies = new JSONArray();
-
-        String myJson = "";
-        
         try {
-
-            myJson = new String(Files.readAllBytes(Paths.get("movies.json")), StandardCharsets.UTF_8);
-
-        } catch (IOException ex) {
+            
+            JSONArray movies = new JSONArray();
+            
+            final JSONParser parser = new JSONParser();
+            
+            movies = (JSONArray) parser.parse(new FileReader("movies.json"));
+            
+            return movies;
+        } catch (IOException | ParseException ex) {
             return null;
         }
-        
-        if(myJson.isEmpty()) return movies;
-        
-        movies = new JSONArray(myJson);
-        
-        return movies;
     }
     
     public DefaultListModel<Movie> getAllMovies() {        

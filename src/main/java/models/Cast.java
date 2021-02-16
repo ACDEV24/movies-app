@@ -2,17 +2,18 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 public final class Cast {
 
     private String id;
     private String role;
     private String name;
-    private String original_name;
     private String movie_id;
     private double popularity;
     private String profile_picture;
+    private int acted_movies;
+    private int diriged_movies;
     private String character;
 
     @JsonCreator
@@ -20,19 +21,21 @@ public final class Cast {
         @JsonProperty("id") String id,
         @JsonProperty("role") String role,
         @JsonProperty("name") String name,
-        @JsonProperty("original_name") String original_name,
         @JsonProperty("movie_id") String movie_id,
         @JsonProperty("popularity") double popularity,
         @JsonProperty("profile_picture") String profile_picture,
+        @JsonProperty("acted_movies") int acted_movies,
+        @JsonProperty("diriged_movies") int diriged_movies,
         @JsonProperty("cast_id") long cast_id,
         @JsonProperty("character") String character
     ){
         this.id = id;
         this.role = role;
         this.name = name;
-        this.original_name = original_name;
         this.movie_id = movie_id;
         this.popularity = popularity;
+        this.acted_movies = acted_movies;
+        this.diriged_movies = diriged_movies;
         this.profile_picture = profile_picture;
         this.character = character;
     }
@@ -43,9 +46,10 @@ public final class Cast {
         
         cast.put("id", this.id);
         cast.put("role", this.role);
-        cast.put("original_name", this.original_name);
         cast.put("movie_id", this.movie_id);
         cast.put("popularity", this.popularity);
+        cast.put("acted_movies", this.acted_movies);
+        cast.put("diriged_movies", this.diriged_movies);
         cast.put("profile_picture", this.profile_picture);
         cast.put("character", this.character);
         
@@ -74,14 +78,6 @@ public final class Cast {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getOriginal_name() {
-        return original_name;
-    }
-
-    public void setOriginal_name(String original_name) {
-        this.original_name = original_name;
     }
 
     public String getMovie_id() {
@@ -114,5 +110,21 @@ public final class Cast {
 
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public int getActed_movies() {
+        return acted_movies;
+    }
+
+    public void setActed_movies(int acted_movies) {
+        this.acted_movies = acted_movies;
+    }
+
+    public int getDiriged_movies() {
+        return diriged_movies;
+    }
+
+    public void setDiriged_movies(int diriged_movies) {
+        this.diriged_movies = diriged_movies;
     }
 }

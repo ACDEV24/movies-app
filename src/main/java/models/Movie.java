@@ -1,13 +1,12 @@
 package models;
 
 import com.fasterxml.jackson.annotation.*;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 public final class Movie {
     
-    private boolean adult;
-    private String picture;
     private String id;
+    private String picture;
     private String original_language;
     private String original_title;
     private String description;
@@ -22,12 +21,12 @@ public final class Movie {
     private boolean has_subtitles;
     private String origin_country;
     private String duration;
+    private Cast[] casts;
     private String production_date;
     private String classification;
 
     @JsonCreator
     public Movie(
-        @JsonProperty("adult") boolean adult,
         @JsonProperty("picture") String picture,
         @JsonProperty("id") String id,
         @JsonProperty("original_language") String original_language,
@@ -44,10 +43,10 @@ public final class Movie {
         @JsonProperty("has_subtitles") boolean has_subtitles,
         @JsonProperty("origin_country") String origin_country,
         @JsonProperty("duration") String duration,
+        @JsonProperty("casts") Cast[] casts,
         @JsonProperty("production_date") String production_date,
         @JsonProperty("classification") String classification
     ){
-        this.adult = adult;
         this.picture = picture;
         this.id = id;
         this.original_language = original_language;
@@ -64,6 +63,7 @@ public final class Movie {
         this.has_subtitles = has_subtitles;
         this.origin_country = origin_country;
         this.duration = duration;
+        this.casts = casts;
         this.production_date = production_date;
         this.classification = classification;
     }
@@ -72,7 +72,6 @@ public final class Movie {
         
         final JSONObject movie = new JSONObject();
         
-        movie.put("adult", this.adult);
         movie.put("picture", this.picture);
         movie.put("id", this.id);
         movie.put("original_language", this.original_language);
@@ -89,6 +88,7 @@ public final class Movie {
         movie.put("has_subtitles", this.has_subtitles);
         movie.put("origin_country", this.origin_country);
         movie.put("duration", this.duration);
+        movie.put("casts", this.casts);
         movie.put("production_date", this.production_date);
         movie.put("classification", this.classification);
         
@@ -96,14 +96,6 @@ public final class Movie {
     }
     
     public Movie() {}
-
-    public boolean isAdult() {
-        return adult;
-    }
-
-    public void setAdult(boolean adult) {
-        this.adult = adult;
-    }
 
     public String getPicture() {
         return picture;
@@ -252,5 +244,13 @@ public final class Movie {
     @Override
     public String toString() {
         return this.getTitle();
+    }
+
+    public Cast[] getCasts() {
+        return casts;
+    }
+
+    public void setCasts(Cast[] casts) {
+        this.casts = casts;
     }
 }

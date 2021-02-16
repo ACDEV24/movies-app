@@ -7,20 +7,23 @@ import org.json.JSONObject;
 
 public final class Cinema {
     
+    public final String id;
     public final String name;
-    public final long rooms;
+    public final int rooms;
     public final String direction;
     public final String phone_number;
     public final Billboard billboards[];
 
     @JsonCreator
     public Cinema(
+        @JsonProperty("id") String id,
         @JsonProperty("name") String name,
-        @JsonProperty("rooms") long rooms,
+        @JsonProperty("rooms") int rooms,
         @JsonProperty("direction") String direction,
         @JsonProperty("phone_number") String phone_number,
         @JsonProperty("billboards") Billboard[] billboards
     ){
+        this.id = id;
         this.name = name;
         this.rooms = rooms;
         this.direction = direction;
@@ -34,6 +37,7 @@ public final class Cinema {
         
         final ArrayList<JSONObject> billboards = new ArrayList<>();
         
+        cinema.put("id", this.id);
         cinema.put("name", this.name);
         cinema.put("rooms", this.rooms);
         cinema.put("direction", this.direction);
