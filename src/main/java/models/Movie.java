@@ -1,6 +1,7 @@
 package models;
 
 import com.fasterxml.jackson.annotation.*;
+import javax.swing.DefaultListModel;
 import org.json.simple.JSONObject;
 
 public final class Movie {
@@ -21,7 +22,7 @@ public final class Movie {
     private boolean has_subtitles;
     private String origin_country;
     private String duration;
-    private Cast[] casts;
+    private DefaultListModel<Cast> casts;
     private String production_date;
     private String classification;
 
@@ -43,7 +44,7 @@ public final class Movie {
         @JsonProperty("has_subtitles") boolean has_subtitles,
         @JsonProperty("origin_country") String origin_country,
         @JsonProperty("duration") String duration,
-        @JsonProperty("casts") Cast[] casts,
+        @JsonProperty("casts") DefaultListModel<Cast> casts,
         @JsonProperty("production_date") String production_date,
         @JsonProperty("classification") String classification
     ){
@@ -246,11 +247,11 @@ public final class Movie {
         return this.getTitle();
     }
 
-    public Cast[] getCasts() {
+    public DefaultListModel<Cast> getCasts() {
         return casts;
     }
 
-    public void setCasts(Cast[] casts) {
+    public void setCasts(DefaultListModel<Cast> casts) {
         this.casts = casts;
     }
 }

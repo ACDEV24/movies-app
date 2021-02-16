@@ -10,6 +10,7 @@ public final class Cast {
     private String role;
     private String name;
     private String movie_id;
+    private String nationality;
     private double popularity;
     private String profile_picture;
     private int acted_movies;
@@ -22,6 +23,7 @@ public final class Cast {
         @JsonProperty("role") String role,
         @JsonProperty("name") String name,
         @JsonProperty("movie_id") String movie_id,
+        @JsonProperty("nationality") String nationality,
         @JsonProperty("popularity") double popularity,
         @JsonProperty("profile_picture") String profile_picture,
         @JsonProperty("acted_movies") int acted_movies,
@@ -33,12 +35,15 @@ public final class Cast {
         this.role = role;
         this.name = name;
         this.movie_id = movie_id;
+        this.nationality = nationality;
         this.popularity = popularity;
         this.acted_movies = acted_movies;
         this.diriged_movies = diriged_movies;
         this.profile_picture = profile_picture;
         this.character = character;
     }
+    
+    public Cast(){}
     
     public JSONObject toJson() {
         
@@ -47,6 +52,7 @@ public final class Cast {
         cast.put("id", this.id);
         cast.put("role", this.role);
         cast.put("movie_id", this.movie_id);
+        cast.put("nationality", this.nationality);
         cast.put("popularity", this.popularity);
         cast.put("acted_movies", this.acted_movies);
         cast.put("diriged_movies", this.diriged_movies);
@@ -126,5 +132,13 @@ public final class Cast {
 
     public void setDiriged_movies(int diriged_movies) {
         this.diriged_movies = diriged_movies;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 }

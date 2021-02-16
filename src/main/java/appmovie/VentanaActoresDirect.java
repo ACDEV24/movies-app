@@ -3,6 +3,7 @@ package appmovie;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import models.Cast;
 import models.Movie;
 import requests.Requests;
 
@@ -138,31 +140,35 @@ public class VentanaActoresDirect extends JFrame {
         this.setVisible(rootPaneCheckingEnabled);
         this.setResizable(false);
 
-        oyente1 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(labelIdPelicula.getText());
-            }
+        oyente1 = (ActionEvent e) -> {
+            
+            if(labelIdPelicula.getText().length() == 0) return;
+
+            final Cast cast = new Cast();
+            final String uuid = UUID.randomUUID().toString().replace("-", "");
+            
+            cast.setId(uuid);
+            cast.setName(cjaNombrePart.getText());
+            cast.setMovie_id(labelIdPelicula.getText());
+            cast.setNationality(cjaNacionalidadPart.getText());
+            cast.setActed_movies(Integer.parseInt(cjaPeliAct.getText()));
+            cast.setDiriged_movies(Integer.parseInt(cjaPeliDiri.getText()));
+            
+            this.requests.saveCast(cast);
         };
+
         btonGuardainfo.addActionListener(oyente1);
 
-        oyente2 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
+        oyente2 = (ActionEvent e) -> {
         };
+        
         btonBorrarInfo.addActionListener(oyente2);
 
-        oyente3 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                VentanaInicial ventan = new VentanaInicial();
-                
-                ventan.setVisible(true);
-                setVisible(false);
-            }
+        oyente3 = (ActionEvent e) -> {
+            VentanaInicial ventan = new VentanaInicial();
+            
+            ventan.setVisible(true);
+            setVisible(false);
         };
         btonRegresar.addActionListener(oyente3);
 

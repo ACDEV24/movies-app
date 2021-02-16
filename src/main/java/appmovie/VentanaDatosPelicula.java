@@ -195,7 +195,7 @@ public class VentanaDatosPelicula extends JFrame {
             movie.setDescription(cjaResumenPeli.getText());
             movie.setId(uuid);
             
-            requests.saveMovie(movie);
+            this.requests.saveMovie(movie);
         };
 
         btonGuardarInfo.addActionListener(oyente1);
