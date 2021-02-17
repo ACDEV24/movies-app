@@ -10,7 +10,7 @@ public final class Billboard {
     public final String details;
     public final String weekday;
     public final String start_at;
-    public final int room;
+    public final String room;
     public final String movie;
     public final String[] chairs;
     public final String name;
@@ -22,7 +22,7 @@ public final class Billboard {
         @JsonProperty("details") String details,
         @JsonProperty("weekday") String weekday,
         @JsonProperty("start_at") String start_at,
-        @JsonProperty("room") int room,
+        @JsonProperty("room") String room,
         @JsonProperty("movie") String movie,
         @JsonProperty("chairs") String[] chairs,
         @JsonProperty("name") String name,

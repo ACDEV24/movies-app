@@ -11,8 +11,6 @@ public final class Cast {
     private String name;
     private String movie_id;
     private String nationality;
-    private double popularity;
-    private String profile_picture;
     private int acted_movies;
     private int diriged_movies;
     private String character;
@@ -24,11 +22,8 @@ public final class Cast {
         @JsonProperty("name") String name,
         @JsonProperty("movie_id") String movie_id,
         @JsonProperty("nationality") String nationality,
-        @JsonProperty("popularity") double popularity,
-        @JsonProperty("profile_picture") String profile_picture,
         @JsonProperty("acted_movies") int acted_movies,
         @JsonProperty("diriged_movies") int diriged_movies,
-        @JsonProperty("cast_id") long cast_id,
         @JsonProperty("character") String character
     ){
         this.id = id;
@@ -36,10 +31,8 @@ public final class Cast {
         this.name = name;
         this.movie_id = movie_id;
         this.nationality = nationality;
-        this.popularity = popularity;
         this.acted_movies = acted_movies;
         this.diriged_movies = diriged_movies;
-        this.profile_picture = profile_picture;
         this.character = character;
     }
     
@@ -51,12 +44,11 @@ public final class Cast {
         
         cast.put("id", this.id);
         cast.put("role", this.role);
+        cast.put("name", this.name);
         cast.put("movie_id", this.movie_id);
         cast.put("nationality", this.nationality);
-        cast.put("popularity", this.popularity);
         cast.put("acted_movies", this.acted_movies);
         cast.put("diriged_movies", this.diriged_movies);
-        cast.put("profile_picture", this.profile_picture);
         cast.put("character", this.character);
         
         return cast;
@@ -92,22 +84,6 @@ public final class Cast {
 
     public void setMovie_id(String movie_id) {
         this.movie_id = movie_id;
-    }
-
-    public double getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(double popularity) {
-        this.popularity = popularity;
-    }
-
-    public String getProfile_picture() {
-        return profile_picture;
-    }
-
-    public void setProfile_picture(String profile_picture) {
-        this.profile_picture = profile_picture;
     }
 
     public String getCharacter() {

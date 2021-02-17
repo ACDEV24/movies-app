@@ -73,6 +73,8 @@ public class VentanaActoresDirect extends JFrame {
         
         final DefaultListModel<Movie> movies = requests.getAllMovies();
         
+        System.out.println(movies.get(0).getCasts());
+        
         final ListBox listBox = new ListBox(movies, labelIdPelicula);
         
         listBox.viewComponents();

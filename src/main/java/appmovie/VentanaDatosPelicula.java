@@ -187,15 +187,17 @@ public class VentanaDatosPelicula extends JFrame {
             final Movie movie = new Movie();
             final String uuid = UUID.randomUUID().toString().replace("-", "");
             
+            movie.setId(uuid);
             movie.setTitle(cjaTituloOriginal.getText());
             movie.setGender(cjaGénero.getText());
             movie.setOriginal_language(cjaIdioma.getText());
             movie.setDuration(cjaDuraciónHoras.getText());
             movie.setRelease_date(cjaFechaEstreno.getText());
             movie.setDescription(cjaResumenPeli.getText());
-            movie.setId(uuid);
             
             this.requests.saveMovie(movie);
+            
+            
         };
 
         btonGuardarInfo.addActionListener(oyente1);

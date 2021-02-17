@@ -16,12 +16,29 @@ import org.json.simple.parser.ParseException;
 public class Requests {
     
     // Movies
+    public JSONArray getMovies() {
+        
+        try {
+            
+            JSONArray movies = new JSONArray();
+            
+            final JSONParser parser = new JSONParser();
+            
+            movies = (JSONArray) parser.parse(new FileReader("movies.json"));
+            
+            return movies;
+        } catch (IOException | ParseException ex) {
+            return null;
+        }
+    }
+
     public boolean saveMovie(Movie movie) {
         
         final JSONObject movieJson = movie.toJson();
         
         JSONArray jsonArray = this.getMovies();
-            if(jsonArray == null) {
+        
+        if(jsonArray == null) {
             jsonArray = new JSONArray();
         }
 
@@ -37,22 +54,6 @@ public class Requests {
         }
         
         return true;
-    }
-    
-    public JSONArray getMovies() {
-        
-        try {
-            
-            JSONArray movies = new JSONArray();
-            
-            final JSONParser parser = new JSONParser();
-            
-            movies = (JSONArray) parser.parse(new FileReader("movies.json"));
-            
-            return movies;
-        } catch (IOException | ParseException ex) {
-            return null;
-        }
     }
     
     public DefaultListModel<Movie> getAllMovies() {        
@@ -116,8 +117,9 @@ public class Requests {
         
         final JSONObject castJson = cast.toJson();
         
-        JSONArray jsonArray = this.getMovies();
-            if(jsonArray == null) {
+        JSONArray jsonArray = this.getCasts();
+
+        if(jsonArray == null) {
             jsonArray = new JSONArray();
         }
 
@@ -160,7 +162,7 @@ public class Requests {
         DefaultListModel<Cast> moviesModels = new DefaultListModel<>();
         
         int counter = -1;
-        for (Object movieJson : movies) {
+        for (Object castJson : movies) {
 
             counter++;
 
@@ -170,7 +172,7 @@ public class Requests {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             
             try {
-                cast = mapper.readValue(movieJson.toString(), Cast.class);
+                cast = mapper.readValue(castJson.toString(), Cast.class);
             } catch (IOException ex) {
                 continue;
             }

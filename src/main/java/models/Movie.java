@@ -12,13 +12,8 @@ public final class Movie {
     private String original_title;
     private String description;
     private String gender;
-    private double popularity;
-    private String poster_picture;
     private String release_date;
     private String title;
-    private double vote_average;
-    private long vote_count;
-    private String url;
     private boolean has_subtitles;
     private String origin_country;
     private String duration;
@@ -28,19 +23,14 @@ public final class Movie {
 
     @JsonCreator
     public Movie(
-        @JsonProperty("picture") String picture,
         @JsonProperty("id") String id,
+        @JsonProperty("picture") String picture,
         @JsonProperty("original_language") String original_language,
         @JsonProperty("original_title") String original_title,
         @JsonProperty("description") String description,
         @JsonProperty("gender") String gender,
-        @JsonProperty("popularity") double popularity,
-        @JsonProperty("poster_picture") String poster_picture,
         @JsonProperty("release_date") String release_date,
         @JsonProperty("title") String title,
-        @JsonProperty("vote_average") double vote_average,
-        @JsonProperty("vote_count") long vote_count,
-        @JsonProperty("url") String url,
         @JsonProperty("has_subtitles") boolean has_subtitles,
         @JsonProperty("origin_country") String origin_country,
         @JsonProperty("duration") String duration,
@@ -48,19 +38,14 @@ public final class Movie {
         @JsonProperty("production_date") String production_date,
         @JsonProperty("classification") String classification
     ){
-        this.picture = picture;
         this.id = id;
+        this.picture = picture;
         this.original_language = original_language;
         this.original_title = original_title;
         this.description = description;
         this.gender = gender;
-        this.popularity = popularity;
-        this.poster_picture = poster_picture;
         this.release_date = release_date;
         this.title = title;
-        this.vote_average = vote_average;
-        this.vote_count = vote_count;
-        this.url = url;
         this.has_subtitles = has_subtitles;
         this.origin_country = origin_country;
         this.duration = duration;
@@ -73,23 +58,17 @@ public final class Movie {
         
         final JSONObject movie = new JSONObject();
         
-        movie.put("picture", this.picture);
         movie.put("id", this.id);
+        movie.put("picture", this.picture);
         movie.put("original_language", this.original_language);
         movie.put("original_title", this.original_title);
         movie.put("description", this.description);
         movie.put("gender", this.gender);
-        movie.put("popularity", this.popularity);
-        movie.put("poster_picture", this.poster_picture);
         movie.put("release_date", this.release_date);
         movie.put("title", this.title);
-        movie.put("vote_average", this.vote_average);
-        movie.put("vote_count", this.vote_count);
-        movie.put("url", this.url);
         movie.put("has_subtitles", this.has_subtitles);
         movie.put("origin_country", this.origin_country);
         movie.put("duration", this.duration);
-        movie.put("casts", this.casts);
         movie.put("production_date", this.production_date);
         movie.put("classification", this.classification);
         
@@ -138,22 +117,6 @@ public final class Movie {
         this.description = description;
     }
 
-    public double getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(double popularity) {
-        this.popularity = popularity;
-    }
-
-    public String getPoster_picture() {
-        return poster_picture;
-    }
-
-    public void setPoster_picture(String poster_picture) {
-        this.poster_picture = poster_picture;
-    }
-
     public String getRelease_date() {
         return release_date;
     }
@@ -168,30 +131,6 @@ public final class Movie {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public double getVote_average() {
-        return vote_average;
-    }
-
-    public void setVote_average(double vote_average) {
-        this.vote_average = vote_average;
-    }
-
-    public long getVote_count() {
-        return vote_count;
-    }
-
-    public void setVote_count(long vote_count) {
-        this.vote_count = vote_count;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public boolean isHas_subtitles() {
@@ -241,11 +180,6 @@ public final class Movie {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    
-    @Override
-    public String toString() {
-        return this.getTitle();
-    }
 
     public DefaultListModel<Cast> getCasts() {
         return casts;
@@ -253,5 +187,10 @@ public final class Movie {
 
     public void setCasts(DefaultListModel<Cast> casts) {
         this.casts = casts;
+    }
+    
+    @Override
+    public String toString() {
+        return this.getTitle();
     }
 }
