@@ -14,7 +14,6 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import models.Movie;
 
 public class VentanaPelicula extends JFrame implements ActionListener{
-
     
     private JButton btn1;
     private JButton btn2;
@@ -28,7 +27,6 @@ public class VentanaPelicula extends JFrame implements ActionListener{
     Movie peli4;
     Movie peli5;
     
-    
     public VentanaPelicula(Movie peli1, Movie peli2, Movie peli3, Movie peli4, Movie peli5){
     
         this.peli1 = peli1;
@@ -37,6 +35,44 @@ public class VentanaPelicula extends JFrame implements ActionListener{
         this.peli4 = peli4;
         this.peli5 = peli5;
         
+    }
+    
+    public VentanaPelicula(){
+        
+        setLayout(null);
+        
+        if(this.peli1 != null) {
+            btn1 = new JButton(getImageIcon(peli1.getPicture()));
+            btn1.setBounds(100,50,90,135); 
+            btn1.addActionListener(this);
+            add(btn1);
+        }
+        if(this.peli3 != null) {
+            btn2 = new JButton(getImageIcon(peli2.getPicture()));
+            btn2.setBounds(100,270,90,135); 
+            btn2.addActionListener(this);
+            add(btn2);
+        }
+        if(this.peli3 != null) {
+            btn3 = new JButton(getImageIcon(peli3.getPicture()));
+            btn3.setBounds(385,50,90,135); 
+            btn3.addActionListener(this);
+            add(btn3);
+        }
+        if(this.peli4 != null) {
+            btn4 = new JButton(getImageIcon(peli4.getPicture()));
+            btn4.setBounds(385,270,90,135); 
+            btn4.addActionListener(this);
+            add(btn4);
+        }
+        if(this.peli5 != null) {
+            btn5 = new JButton(getImageIcon(peli5.getPicture()));
+            btn5.setBounds(245,164,90,135); 
+            btn5.addActionListener(this);
+            add(btn5);
+        }
+        
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
     public ImageIcon getImageIcon(String picture) {
@@ -56,41 +92,6 @@ public class VentanaPelicula extends JFrame implements ActionListener{
 
         ImageIcon imageIcon = new ImageIcon(c);
         return null;
-    }
-    
-    public VentanaPelicula(){
-    
-               
-        setLayout(null);
-        
-        btn1 = new JButton(new ImageIcon("1"));
-        btn1.setBounds(100,50,90,135); 
-        btn1.addActionListener(this);
-        add(btn1);
-        
-        btn2 = new JButton(new ImageIcon("2"));
-        btn2.setBounds(100,270,90,135); 
-        btn2.addActionListener(this);
-        add(btn2);
-        
-        btn3 = new JButton(new ImageIcon("3"));
-        btn3.setBounds(385,50,90,135); 
-        btn3.addActionListener(this);
-        add(btn3);
-        
-        btn4 = new JButton(new ImageIcon("4"));
-        btn4.setBounds(385,270,90,135); 
-        btn4.addActionListener(this);
-        add(btn4);
-        
-        btn5 = new JButton(new ImageIcon("5"));
-        btn5.setBounds(245,164,90,135); 
-        btn5.addActionListener(this);
-        add(btn5);
-        
-        
-        
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     // Acion del boton que llevara a la descripcion de la pelicula 
     @Override
