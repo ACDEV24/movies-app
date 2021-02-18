@@ -29,12 +29,15 @@ public class VentanaInicial extends JFrame {
     JButton botonDatosActores;
     JButton botonMuestraDatos;
     JButton botonDatosCine;
+    JButton botonDatosSala;
 
     //Action listener objetos
     private ActionListener oyente1;
     private ActionListener oyente2;
     private ActionListener oyente3;
     private ActionListener oyente4;
+      private ActionListener oyente5;
+    
 
     /*
     List<Movie> movies = new ArrayList<>();
@@ -129,6 +132,10 @@ public class VentanaInicial extends JFrame {
         botonDatosCine.setForeground(Color.BLACK);
         botonDatosCine.setBounds(370, 480, 160, 60);
 
+        botonDatosSala = new JButton("DATOS SALA");
+        botonDatosSala.setForeground(Color.BLACK);
+        botonDatosSala.setBounds(20, 20, 160, 60);
+
 //        
 //        label2 = new JLabel("SEGUNDA PELICULA");
 //        label2.setForeground(Color.WHITE);
@@ -150,6 +157,7 @@ public class VentanaInicial extends JFrame {
         panel.add(botonDatosActores);
         panel.add(botonMuestraDatos);
         panel.add(botonDatosCine);
+        panel.add(botonDatosSala);
 //         panel.add(label2);
 //         panel.add(label3);
 //         panel.add(label4);
@@ -196,20 +204,34 @@ public class VentanaInicial extends JFrame {
             }
         };
         botonMuestraDatos.addActionListener(oyente3);
-        
-        
-         oyente4 = new ActionListener() {
+
+        oyente4 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 VentanaDatosCine vent5 = new VentanaDatosCine();
-                
+
                 vent5.setVisible(true);
+                setVisible(false);
+
+            }
+        };
+        botonDatosCine.addActionListener(oyente4);
+        
+        
+         oyente5 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                VentanaSalaInfo vent6 = new VentanaSalaInfo();
+                
+                vent6.setVisible(true);
                 setVisible(false);
                 
             }
         };
-        botonDatosCine.addActionListener(oyente4);
+        botonDatosSala.addActionListener(oyente5);
+        
 
     }
 }
