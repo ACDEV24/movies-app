@@ -3,16 +3,17 @@ package models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
-import org.json.JSONObject;
+import javax.swing.DefaultListModel;
+import org.json.simple.JSONObject;
 
 public final class Cinema {
     
-    public final String id;
-    public final String name;
-    public final int rooms;
-    public final String direction;
-    public final String phone_number;
-    public final Billboard billboards[];
+    private String id;
+    private String name;
+    private int rooms;
+    private String direction;
+    private String phone_number;
+    private DefaultListModel<Billboard> billboards;
 
     @JsonCreator
     public Cinema(
@@ -20,16 +21,16 @@ public final class Cinema {
         @JsonProperty("name") String name,
         @JsonProperty("rooms") int rooms,
         @JsonProperty("direction") String direction,
-        @JsonProperty("phone_number") String phone_number,
-        @JsonProperty("billboards") Billboard[] billboards
+        @JsonProperty("phone_number") String phone_number
     ){
         this.id = id;
         this.name = name;
         this.rooms = rooms;
         this.direction = direction;
         this.phone_number = phone_number;
-        this.billboards = billboards;
     }
+    
+    public Cinema() {}
     
     public JSONObject toJson() {
         
@@ -43,12 +44,54 @@ public final class Cinema {
         cinema.put("direction", this.direction);
         cinema.put("phone_number", this.phone_number);
         
-        for (Billboard billboard : this.billboards) {
-            billboards.add(billboard.toJson());
-        }
-        
-        cinema.put("billboards", billboards);
-        
         return cinema;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public DefaultListModel<Billboard> getBillboards() {
+        return billboards;
+    }
+
+    public void setBillboards(DefaultListModel<Billboard> billboards) {
+        this.billboards = billboards;
     }
 }

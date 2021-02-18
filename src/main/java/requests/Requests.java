@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.DefaultListModel;
+import models.Billboard;
 import models.Cast;
+import models.Cinema;
 import models.Movie;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -159,7 +161,7 @@ public class Requests {
         
         if(movies == null) return null;
         
-        DefaultListModel<Cast> moviesModels = new DefaultListModel<>();
+        DefaultListModel<Cast> castsModels = new DefaultListModel<>();
         
         int counter = -1;
         for (Object castJson : movies) {
@@ -177,9 +179,153 @@ public class Requests {
                 continue;
             }
             
-            moviesModels.add(counter, cast);
+            castsModels.add(counter, cast);
         }
         
-        return moviesModels;
+        return castsModels;
+    }
+    
+    
+    // Cinema
+    public boolean saveCinema(Cinema cinema) {
+        
+        final JSONObject cinemaJson = cinema.toJson();
+        
+        JSONArray jsonArray = this.getCinemas();
+
+        if(jsonArray == null) {
+            jsonArray = new JSONArray();
+        }
+
+        jsonArray.add(cinemaJson);
+
+        try (FileWriter file = new FileWriter("cinemas.json")) {
+
+            file.write(jsonArray.toString());
+            file.flush();
+
+        } catch (IOException e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public JSONArray getCinemas() {
+        
+        try {
+            
+            JSONArray cinemas = new JSONArray();
+            
+            final JSONParser parser = new JSONParser();
+            
+            cinemas = (JSONArray) parser.parse(new FileReader("cinemas.json"));
+            
+            return cinemas;
+        } catch (IOException | ParseException ex) {
+            return null;
+        }
+    }
+    
+    public DefaultListModel<Cinema> getAllCinemas() {
+        
+        JSONArray cinemas = this.getCinemas();
+        
+        if(cinemas == null) return null;
+        
+        DefaultListModel<Cinema> cinemasModels = new DefaultListModel<>();
+        
+        int counter = -1;
+        for (Object cinemaJson : cinemas) {
+
+            counter++;
+
+            Cinema cinema = new Cinema();
+            
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            
+            try {
+                cinema = mapper.readValue(cinemaJson.toString(), Cinema.class);
+            } catch (IOException ex) {
+                continue;
+            }
+            
+            cinemasModels.add(counter, cinema);
+        }
+        
+        return cinemasModels;
+    }
+    
+    
+    // Billboard
+    public boolean saveBillboard(Billboard billboard) {
+        
+        final JSONObject billboardJson = billboard.toJson();
+        
+        JSONArray jsonArray = this.getBillboard();
+
+        if(jsonArray == null) {
+            jsonArray = new JSONArray();
+        }
+
+        jsonArray.add(billboardJson);
+
+        try (FileWriter file = new FileWriter("billboards.json")) {
+
+            file.write(jsonArray.toString());
+            file.flush();
+
+        } catch (IOException e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public JSONArray getBillboard() {
+        
+        try {
+            
+            JSONArray billboards = new JSONArray();
+            
+            final JSONParser parser = new JSONParser();
+            
+            billboards = (JSONArray) parser.parse(new FileReader("billboards.json"));
+            
+            return billboards;
+        } catch (IOException | ParseException ex) {
+            return null;
+        }
+    }
+    
+    public DefaultListModel<Billboard> getAllBillboards() {
+        
+        JSONArray billboards = this.getBillboard();
+        
+        if(billboards == null) return null;
+        
+        DefaultListModel<Billboard> billboardsModels = new DefaultListModel<>();
+        
+        int counter = -1;
+        for (Object billboardJson : billboards) {
+
+            counter++;
+
+            Billboard billboard = new Billboard();
+            
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            
+            try {
+                billboard = mapper.readValue(billboardJson.toString(), Billboard.class);
+            } catch (IOException ex) {
+                continue;
+            }
+            
+            billboardsModels.add(counter, billboard);
+        }
+        
+        return billboardsModels;
     }
 }
