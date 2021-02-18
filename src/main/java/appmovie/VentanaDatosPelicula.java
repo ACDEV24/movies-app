@@ -25,11 +25,9 @@ public class VentanaDatosPelicula extends JFrame {
     private JLabel labelGéneroPeli;
     private JLabel labelIdiomaOriginal;
     private JLabel labelFechaProdu;
-    private JLabel labelUrlPeli;
     private JLabel labelClasificar;
     private JLabel labelFechaEstreno;
     private JLabel labelResumen;
-    private JLabel labelIdentificar;
     private JLabel labelimsgenURL;
     private JLabel labelDuracion;
 
@@ -47,7 +45,6 @@ public class VentanaDatosPelicula extends JFrame {
     private JTextField cjaDuraciónHoras;
     private JTextField cjaFechaEstreno;
     private JTextField cjaResumenPeli;
-    private JTextField cjaIdentificador;
     private JTextField cjaURLimagen;
 
     private ActionListener oyente1;
@@ -63,7 +60,6 @@ public class VentanaDatosPelicula extends JFrame {
         Componentes3();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
     }
 
     private void Componentes3() {
@@ -94,10 +90,6 @@ public class VentanaDatosPelicula extends JFrame {
         labelFechaProdu.setForeground(Color.BLACK);
         labelFechaProdu.setBounds(20, 210, 800, 100);
 
-        labelUrlPeli = new JLabel("URL de la película");
-        labelUrlPeli.setForeground(Color.BLACK);
-        labelUrlPeli.setBounds(360, 90, 800, 100);
-
         labelDuracion = new JLabel("Duración (horas y minutos)");
         labelDuracion.setForeground(Color.BLACK);
         labelDuracion.setBounds(360, 90, 800, 100);
@@ -114,13 +106,9 @@ public class VentanaDatosPelicula extends JFrame {
         labelResumen.setForeground(Color.BLACK);
         labelResumen.setBounds(360, 210, 800, 100);
 
-        labelIdentificar = new JLabel("Identificador");
-        labelIdentificar.setForeground(Color.BLACK);
-        labelIdentificar.setBounds(20, 280, 800, 100);
-
         labelimsgenURL = new JLabel("URL imagen");
         labelimsgenURL.setForeground(Color.BLACK);
-        labelimsgenURL.setBounds(20, 350, 800, 100);
+        labelimsgenURL.setBounds(20, 280, 800, 100);
 
         //Botones
         btonGuardarInfo = new JButton("GUARDAR INFOMACIÓN");
@@ -156,26 +144,22 @@ public class VentanaDatosPelicula extends JFrame {
         cjaFechaEstreno = new JTextField();
         cjaFechaEstreno.setBounds(350, 210, 300, 40);
 
-        cjaIdentificador = new JTextField();
-        cjaIdentificador.setBounds(20, 340, 300, 40);
-
         cjaResumenPeli = new JTextField();
         cjaResumenPeli.setBounds(350, 276, 300, 40);
 
         cjaURLimagen = new JTextField();
-        cjaURLimagen.setBounds(20, 420, 300, 40);
+        cjaURLimagen.setBounds(20, 340, 300, 40);
 
         panel.add(labelAlmacenajeDatos);
         panel.add(labelTitulo);
         panel.add(labelGéneroPeli);
         panel.add(labelIdiomaOriginal);
         panel.add(labelFechaProdu);
-        panel.add(labelUrlPeli);
         panel.add(labelClasificar);
         panel.add(labelFechaEstreno);
         panel.add(labelResumen);
-        panel.add(labelIdentificar);
         panel.add(labelimsgenURL);
+        panel.add(labelDuracion);
 
         panel.add(btonGuardarInfo);
         panel.add(btonBorrarInfo);
@@ -190,7 +174,6 @@ public class VentanaDatosPelicula extends JFrame {
         panel.add(cjaDuraciónHoras);
         panel.add(cjaFechaEstreno);
         panel.add(cjaResumenPeli);
-        panel.add(cjaIdentificador);
         panel.add(cjaURLimagen);
         panel.add(checkbox);
 
@@ -212,6 +195,8 @@ public class VentanaDatosPelicula extends JFrame {
             movie.setDuration(cjaDuraciónHoras.getText());
             movie.setRelease_date(cjaFechaEstreno.getText());
             movie.setDescription(cjaResumenPeli.getText());
+            movie.setPicture(cjaURLimagen.getText());
+            movie.setHas_subtitles(checkbox.isSelected());
 
             this.requests.saveMovie(movie);
 

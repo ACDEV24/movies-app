@@ -254,6 +254,30 @@ public class Requests {
             cinemasModels.add(counter, cinema);
         }
         
+        final DefaultListModel<Billboard> billboards = this.getAllBillboards();
+        
+        if(billboards == null) return cinemasModels;
+        
+        for (int i = 0; i < cinemasModels.size(); i++) {
+            
+            DefaultListModel<Billboard> billboardsModels = new DefaultListModel<>();
+            
+            counter = -1;
+
+            for (int j = 0; j < billboards.size(); j++) {
+                if(billboards.get(j).getCinema_id()== null) continue;
+                if(billboards.get(j).getCinema_id().equals(cinemasModels.get(i).getId())) {
+                    counter++;
+                    billboardsModels.add(counter, billboards.get(j));
+                }
+            }
+            
+            if(billboardsModels.size() > 0) {
+                cinemasModels.get(i).setBillboards(billboardsModels);
+            }
+           
+        }
+        
         return cinemasModels;
     }
     
