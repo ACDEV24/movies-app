@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -31,6 +32,7 @@ public class VentanaDatosPelicula extends JFrame {
     private JLabel labelResumen;
     private JLabel labelimsgenURL;
     private JLabel labelDuracion;
+    
 
     //Botones
     private JButton btonGuardarInfo;
@@ -111,6 +113,7 @@ public class VentanaDatosPelicula extends JFrame {
         labelimsgenURL.setForeground(Color.BLACK);
         labelimsgenURL.setBounds(20, 280, 800, 100);
 
+        
         //Botones
         btonGuardarInfo = new JButton("GUARDAR INFOMACIÓN");
         btonGuardarInfo.setBounds(20, 480, 160, 60);
@@ -161,7 +164,8 @@ public class VentanaDatosPelicula extends JFrame {
         panel.add(labelResumen);
         panel.add(labelimsgenURL);
         panel.add(labelDuracion);
-
+        
+        
         panel.add(btonGuardarInfo);
         panel.add(btonBorrarInfo);
 

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +28,7 @@ public class VentanaActoresDirect extends JFrame {
     private JLabel labelCantidadPeliDiri;
     private JLabel labelIdPelicula;
     private JLabel labelRolPeli;
+    
 
     //Botones
     private JButton btonGuardainfo;
@@ -95,7 +97,7 @@ public class VentanaActoresDirect extends JFrame {
 
         labelRolPeli = new JLabel("Rol en la película");
         labelRolPeli.setForeground(Color.BLACK);
-        labelRolPeli.setBounds(20, 280, 800, 100);
+        labelRolPeli.setBounds(20, 280, 800, 100);        
 
         //Botones
         btonGuardainfo = new JButton("GUARDAR INFORMACIÓN");

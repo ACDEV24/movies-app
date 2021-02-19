@@ -57,11 +57,12 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
     JList listComments;
     JScrollPane scrollPaneComments;
 
-    //Instancia de la peli para ue los atributos la reciban, 
+    //Instancia de la peli para que los atributos la reciban, 
     //y el tipo de dato String para la accion del boton atras
     Movie peli;
     String texto = "";
     
+    //Aqui tenemos el contructor junto con el parametro de la intancia tipo Movie
     public VentanaDescripcion(Movie peli){
     
         this.peli = peli;
@@ -69,6 +70,11 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         this.viewComponents();
     }
     
+    //En este oro constructor veremos todo el corazon de esta venatana,
+    //ya que tenemos la validacion de todos los componentenes, 
+    //con la creacion de objetos tipo, JLAbel,JButton,JTextArea, JTextField, 
+    //Ademas tenemos la accion del boton del aparatdo comentar,
+    //el cual pasa el comentario del JTextField al JTextArea
     public void viewComponents() {
         
         this.listComments = new javax.swing.JList(this.peli.getComments());
@@ -89,11 +95,13 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
            
         tituloPeli = new JTextField ("Titulo: " + peli.getTitle());
         tituloPeli.setBounds(252,40,200,25);
+        tituloPeli.setEditable(false);
         add(tituloPeli);
         
         resumenPeli = new JTextArea ("Descripcion: " + peli.getDescription());
         resumenPeli.setBounds(252,82,330,95);
         resumenPeli.setBackground(Color.LIGHT_GRAY);
+        resumenPeli.setEditable(false);
         add(resumenPeli);
         
         genero = new JLabel("Genero: " + peli.getGender());
@@ -101,27 +109,27 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         add(genero);
         
         idiomaOriginal = new JLabel("Lenguaje original: " + peli.getOriginal_language());
-        idiomaOriginal.setBounds(301,60,200,25);
+        idiomaOriginal.setBounds(142,195,200,25);
         add(idiomaOriginal);
         
         clasificacion = new JLabel("Classificacion: " + peli.getClassification());
-        clasificacion.setBounds(347,60,200,25);
+        clasificacion.setBounds(422,195,200,25);
         add(clasificacion);
         
         duracion = new JLabel("Duracion: " + peli.getDuration());
-        duracion.setBounds(426,60,200,25);
+        duracion.setBounds(400,60,200,25);
         add(duracion);
         
-        añoProduccion = new JLabel("Fecha de produccion: " + peli.getProduction_date());
+        añoProduccion = new JLabel("Produccion: " + peli.getProduction_date());
         añoProduccion.setBounds(422,177,200,25);
         add(añoProduccion);
         
-        fechaEstreno = new JLabel("Fecha de lanzamiento: " + peli.getRelease_date());
+        fechaEstreno = new JLabel("Lanzamiento: " + peli.getRelease_date());
         fechaEstreno.setBounds(422,215,200,25);
         add(fechaEstreno);
         
         tituloOriginal = new JLabel("Titulo: " + peli.getOriginal_title());
-        tituloOriginal.setBounds(142,196,200,25);
+        tituloOriginal.setBounds(142,176,200,25);
         add(tituloOriginal); 
         
         ciudadOrigen = new JLabel("Nacionalidad: " + peli.getOrigin_country());
@@ -136,9 +144,10 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         desplazar = new JScrollPane(cajaActores);
         desplazar.setBounds(142,269,180,110);
         cajaActores.setBackground(Color.LIGHT_GRAY);
+        cajaActores.setEditable(false);
         add(desplazar);
         
-        directores = new JLabel();
+        directores = new JLabel("Directores");
         directores.setBounds(465,245,200,25);
         add(directores);
         
@@ -146,6 +155,7 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         desplazar = new JScrollPane(cajaDirector);
         desplazar.setBounds(402,269,180,110);
         cajaDirector.setBackground(Color.LIGHT_GRAY);
+        cajaDirector.setEditable(false);
         add(desplazar);   
         
         comentarios = new JLabel("comentarios: ");

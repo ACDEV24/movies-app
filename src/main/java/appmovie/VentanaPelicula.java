@@ -1,5 +1,6 @@
 package appmovie;
 
+//Aqui importamos todas las librerias que encesitamos
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -12,8 +13,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import models.Movie;
 
+//Creamos la clase princiapal
 public final class VentanaPelicula extends JFrame {
     
     private JButton atras;
@@ -22,15 +25,23 @@ public final class VentanaPelicula extends JFrame {
     private JButton btn3;
     private JButton btn4;
     private JButton btn5;
+    private JLabel fondo2;
     
+    //Aqui esta el acttion listener del objeto, en etse caso seria "bak"
     ActionListener back;
     
+    //Aqui encontramos las instancias tipo Movie, Para que luego lo reciban 
+    //los objetos en el constructor pincipal
     Movie peli1;
     Movie peli2;
     Movie peli3;
     Movie peli4;
     Movie peli5;
     
+    //Constructor donde estan los parametros de las instancias Movie, 
+    //y donde esta toda la estructura de la ventana, y por suepuesto hacemos creacion de objetos tipo,
+    //JLAbel,JButton,JTextArea, JTextField, Ademas tenemos la accion de los botones estos botones representan la cartelera de la pelicula,
+    //y al presionarlo lo llevara  ala ventana descripcion de la pelicula
     public VentanaPelicula(Movie peli1, Movie peli2, Movie peli3, Movie peli4, Movie peli5){
     
         this.peli1 = peli1;
@@ -91,13 +102,21 @@ public final class VentanaPelicula extends JFrame {
         };
 
         atras.addActionListener(back);
+        
+        //Con el metodo ImageIcon le ponemos fondo a nuestra aplicacion mediante un JLabel,
+        //la imagen se encuentra deltro de la carpeta del proyecto para que sea mas facil llamarla
+        fondo2 = new JLabel(new ImageIcon("Fondo.jpg"));
+        fondo2.setBounds(0,0,800,600);
+        add(fondo2);
+        
+        
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         
     }
     
     public VentanaPelicula() {}
     
-    //Metodo para qu elos botones reciban la imagen por url
+    //Metodo para qu elos botones reciban la imagen por url, devuelve tood como imageIcon 
     public ImageIcon getImageIcon(String picture) {
         URL url = null;
         try {

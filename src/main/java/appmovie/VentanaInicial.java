@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import models.Movie;
 import requests.Requests;
@@ -19,6 +21,7 @@ public class VentanaInicial extends JFrame {
     JButton botonDatosPeli;
     JButton botonDatosActores;
     JButton botonMuestraDatos;
+    JLabel fondo1;
 
     //Action listener objetos
     private ActionListener oyente1;
@@ -57,10 +60,17 @@ public class VentanaInicial extends JFrame {
         botonMuestraDatos = new JButton("MUESTRA DE DATOS");
         botonMuestraDatos.setForeground(Color.BLACK);
         botonMuestraDatos.setBounds(600, 480, 160, 60);
+        
+        //Con el metodo ImageIcon le ponemos fondo a nuestra aplicacion mediante un JLabel, 
+        //la imagen se encuentra deltro de la carpeta del proyecto para que sea mas facil llamarla
+        fondo1 = new JLabel(new ImageIcon("Fondo.jpg"));
+        fondo1.setBounds(0,0,800,600);
+        add(fondo1);
 
         panel.add(botonDatosPeli);
         panel.add(botonDatosActores);
         panel.add(botonMuestraDatos);
+        panel.add(fondo1);
 
         //Datos de ventana
         this.setSize(800, 600);
