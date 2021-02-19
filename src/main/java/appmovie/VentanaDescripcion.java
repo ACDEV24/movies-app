@@ -1,6 +1,7 @@
 package appmovie;
     
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,8 +34,8 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
     private JButton comentar;
     private JButton atras;
     private JTextArea resumenPeli;
-    private JTextArea cajaActores;
-    private JTextArea cajaDirector;
+//    private JTextArea cajaActores;
+//    private JTextArea cajaDirector;
     private JTextField tituloPeli; 
     private JTextField enviarComentario;
     private JScrollPane desplazar;
@@ -55,7 +57,11 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
     ActionListener accionComentario;
     
     JList listComments;
+    JList listActors;
+    JList listDirectors;
     JScrollPane scrollPaneComments;
+    JScrollPane ScrollPaneActors;
+    JScrollPane ScrollPaneDirectors;
 
     //Instancia de la peli para que los atributos la reciban, 
     //y el tipo de dato String para la accion del boton atras
@@ -83,6 +89,18 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         this.scrollPaneComments.setBounds(142, 446, 390, 80);
         add(this.scrollPaneComments);
 
+        this.listActors = new javax.swing.JList(this.peli.getCasts());
+        this.listActors.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.ScrollPaneActors = new javax.swing.JScrollPane(listActors);
+        this.ScrollPaneActors.setBounds(142,269,180,110);
+        add(this.ScrollPaneActors);
+        
+        this.listDirectors = new javax.swing.JList(this.peli.getCasts());
+        this.listDirectors.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.ScrollPaneDirectors = new javax.swing.JScrollPane(listDirectors);
+        this.ScrollPaneDirectors.setBounds(402,269,180,110);
+        add(this.ScrollPaneDirectors);
+        
         setLayout(null);
         
         atras = new JButton("←");
@@ -140,24 +158,23 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         actores.setBounds(209,245,200,25);
         add(actores);
         
-        cajaActores = new JTextArea((Document) peli.getCasts());
-        desplazar = new JScrollPane(cajaActores);
-        desplazar.setBounds(142,269,180,110);
-        cajaActores.setBackground(Color.LIGHT_GRAY);
-        cajaActores.setEditable(false);
-        add(desplazar);
         
+/*      cajaActores = new JTextArea((Document) peli.getCasts());
+        desplazar = new JScrollPane((Component) cajaActores);
+        desplazar.setBounds(142,269,180,110);
+        add(desplazar);   
+*/        
         directores = new JLabel("Directores");
         directores.setBounds(465,245,200,25);
         add(directores);
         
-        cajaDirector = new JTextArea((Document) peli.getCasts());
+/*      cajaDirector = new JTextArea((Document) peli.getCasts());
         desplazar = new JScrollPane(cajaDirector);
         desplazar.setBounds(402,269,180,110);
         cajaDirector.setBackground(Color.LIGHT_GRAY);
         cajaDirector.setEditable(false);
         add(desplazar);   
-        
+*/        
         comentarios = new JLabel("comentarios: ");
         comentarios.setBounds(142,391,200,25);
         add(comentarios);
