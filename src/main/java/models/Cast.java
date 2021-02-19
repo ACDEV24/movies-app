@@ -117,4 +117,9 @@ public final class Cast {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+    
+    @Override
+    public String toString() {
+        return this.name + ". Rol: " + this.role;
+    }
 }

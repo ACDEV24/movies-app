@@ -167,6 +167,7 @@ public class VentanaActoresDirect extends JFrame {
             cast.setNationality(cjaNacionalidadPart.getText());
             cast.setActed_movies(Integer.parseInt(cjaPeliAct.getText()));
             cast.setDiriged_movies(Integer.parseInt(cjaPeliDiri.getText()));
+            cast.setRole(cjaPeliRol.getText());
 
             this.requests.saveCast(cast);
             

@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.text.Document;
+import models.Cast;
 import models.Movie;
 import requests.Requests;
 
@@ -88,14 +90,24 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         this.scrollPaneComments = new javax.swing.JScrollPane(listComments);
         this.scrollPaneComments.setBounds(142, 446, 390, 80);
         add(this.scrollPaneComments);
-
-        this.listActors = new javax.swing.JList(this.peli.getCasts());
+        
+        if(this.peli.getCasts() == null) {
+            this.listActors = new javax.swing.JList(new DefaultListModel<>());
+        } else {
+            this.listActors = new javax.swing.JList(this.peli.getCasts());
+        }
+        
         this.listActors.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         this.ScrollPaneActors = new javax.swing.JScrollPane(listActors);
         this.ScrollPaneActors.setBounds(142,269,180,110);
         add(this.ScrollPaneActors);
         
-        this.listDirectors = new javax.swing.JList(this.peli.getCasts());
+        if(this.peli.getCasts() == null) {
+            this.listDirectors = new javax.swing.JList(new DefaultListModel<>());
+        } else {
+            this.listDirectors = new javax.swing.JList(this.peli.getCasts());
+        }
+        
         this.listDirectors.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         this.ScrollPaneDirectors = new javax.swing.JScrollPane(listDirectors);
         this.ScrollPaneDirectors.setBounds(402,269,180,110);
