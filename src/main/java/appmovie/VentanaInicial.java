@@ -170,39 +170,35 @@ public class VentanaInicial extends JFrame {
         this.setResizable(false);
 
         //Action listener para los botones
-        oyente1 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                VentanaDatosPelicula vent = new VentanaDatosPelicula();
-
-                vent.setVisible(true);
-
-                setVisible(false);
-
-            }
+        oyente1 = (ActionEvent e) -> {
+            VentanaDatosPelicula vent = new VentanaDatosPelicula();
+            
+            vent.setVisible(true);
+            
+            setVisible(false);
         };
+
         botonDatosPeli.addActionListener(oyente1);
 
-        oyente2 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                VentanaActoresDirect vent4 = new VentanaActoresDirect();
-
-                vent4.setVisible(true);
-
-                setVisible(false);
-            }
+        oyente2 = (ActionEvent e) -> {
+            VentanaActoresDirect vent4 = new VentanaActoresDirect();
+            
+            vent4.setVisible(true);
+            
+            setVisible(false);
         };
+
         botonDatosActores.addActionListener(oyente2);
 
-        oyente3 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        oyente3 = (ActionEvent e) -> {
 
-            }
+            VentanaPelicula ventanaPelicula = new VentanaPelicula();
+            
+            ventanaPelicula.setVisible(true);
+            
+            setVisible(false);
         };
+        
         botonMuestraDatos.addActionListener(oyente3);
 
         oyente4 = new ActionListener() {

@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import models.Movie;
 
 public class VentanaPelicula extends JFrame implements ActionListener{
@@ -34,10 +33,6 @@ public class VentanaPelicula extends JFrame implements ActionListener{
         this.peli3 = peli3;
         this.peli4 = peli4;
         this.peli5 = peli5;
-        
-    }
-    
-    public VentanaPelicula(){
         
         setLayout(null);
         
@@ -72,10 +67,13 @@ public class VentanaPelicula extends JFrame implements ActionListener{
             add(btn5);
         }
         
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
     }
     
+    public VentanaPelicula() {}
+    
     public ImageIcon getImageIcon(String picture) {
+
         URL url = null;
         try {
             url = new URL(picture);
@@ -84,14 +82,16 @@ public class VentanaPelicula extends JFrame implements ActionListener{
         }
 
         BufferedImage c = null;
+
         try {
             c = ImageIO.read(url);
         } catch (IOException ex) {
             return null;
         }
 
-        ImageIcon imageIcon = new ImageIcon(c);
-        return null;
+        final ImageIcon imageIcon = new ImageIcon(c);
+
+        return imageIcon;
     }
     // Acion del boton que llevara a la descripcion de la pelicula 
     @Override
