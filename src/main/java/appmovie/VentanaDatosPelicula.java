@@ -205,9 +205,11 @@ public class VentanaDatosPelicula extends JFrame {
             movie.setGender(cjaGénero.getText());
             movie.setOriginal_language(cjaIdioma.getText());
             movie.setDuration(cjaDuraciónHoras.getText());
+            movie.setProduction_date(cjaAñoProduct.getText());
             movie.setRelease_date(cjaFechaEstreno.getText());
             movie.setDescription(cjaResumenPeli.getText());
             movie.setPicture(cjaURLimagen.getText());
+            movie.setClassification(cjaClasificación.getText());
             movie.setHas_subtitles(checkbox.isSelected());
 
             this.requests.saveMovie(movie);

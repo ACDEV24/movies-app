@@ -12,7 +12,6 @@ public final class Movie {
     private String id;
     private String picture;
     private String original_language;
-    private String original_title;
     private String description;
     private String gender;
     private String release_date;
@@ -30,7 +29,6 @@ public final class Movie {
         @JsonProperty("id") String id,
         @JsonProperty("picture") String picture,
         @JsonProperty("original_language") String original_language,
-        @JsonProperty("original_title") String original_title,
         @JsonProperty("description") String description,
         @JsonProperty("gender") String gender,
         @JsonProperty("release_date") String release_date,
@@ -46,7 +44,6 @@ public final class Movie {
         this.id = id;
         this.picture = picture;
         this.original_language = original_language;
-        this.original_title = original_title;
         this.description = description;
         this.gender = gender;
         this.release_date = release_date;
@@ -67,7 +64,7 @@ public final class Movie {
         movie.put("id", this.id);
         movie.put("picture", this.picture);
         movie.put("original_language", this.original_language);
-        movie.put("original_title", this.original_title);
+        movie.put("title", this.title);
         movie.put("description", this.description);
         movie.put("gender", this.gender);
         movie.put("release_date", this.release_date);
@@ -115,14 +112,6 @@ public final class Movie {
 
     public void setOriginal_language(String original_language) {
         this.original_language = original_language;
-    }
-
-    public String getOriginal_title() {
-        return original_title;
-    }
-
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
     }
 
     public String getDescription() {

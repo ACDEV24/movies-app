@@ -44,9 +44,6 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
     private JLabel genero;
     private JLabel idiomaOriginal;
     private JLabel añoProduccion;
-    private JLabel id;
-    private JLabel ciudadOrigen;
-    private JLabel tituloOriginal;
     private JLabel actores;
     private JLabel directores;
     private JLabel clasificacion;
@@ -138,12 +135,12 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         genero.setBounds(251,60,200,25);
         add(genero);
         
-        idiomaOriginal = new JLabel("Lenguaje original: " + peli.getOriginal_language());
+        idiomaOriginal = new JLabel("Idioma: " + peli.getOriginal_language());
         idiomaOriginal.setBounds(142,195,200,25);
         add(idiomaOriginal);
         
         clasificacion = new JLabel("Classificacion: " + peli.getClassification());
-        clasificacion.setBounds(422,195,200,25);
+        clasificacion.setBounds(402,195,200,25);
         add(clasificacion);
         
         duracion = new JLabel("Duracion: " + peli.getDuration());
@@ -151,20 +148,12 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
         add(duracion);
         
         añoProduccion = new JLabel("Produccion: " + peli.getProduction_date());
-        añoProduccion.setBounds(422,177,200,25);
+        añoProduccion.setBounds(402,177,200,25);
         add(añoProduccion);
         
         fechaEstreno = new JLabel("Lanzamiento: " + peli.getRelease_date());
-        fechaEstreno.setBounds(422,215,200,25);
+        fechaEstreno.setBounds(402,215,200,25);
         add(fechaEstreno);
-        
-        tituloOriginal = new JLabel("Titulo: " + peli.getOriginal_title());
-        tituloOriginal.setBounds(142,176,200,25);
-        add(tituloOriginal); 
-        
-        ciudadOrigen = new JLabel("Nacionalidad: " + peli.getOrigin_country());
-        ciudadOrigen.setBounds(142,215,200,25);
-        add(ciudadOrigen); 
         
         actores = new JLabel("Actores");
         actores.setBounds(209,245,200,25);
