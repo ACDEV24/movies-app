@@ -52,7 +52,6 @@ public class VentanaActoresDirect extends JFrame {
         Componentes3();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
     }
 
     private void Componentes3() {

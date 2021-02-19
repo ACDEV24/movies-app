@@ -19,28 +19,14 @@ public class VentanaInicial extends JFrame {
     JButton botonDatosPeli;
     JButton botonDatosActores;
     JButton botonMuestraDatos;
-    JButton botonDatosCine;
-    JButton botonDatosSala;
 
     //Action listener objetos
     private ActionListener oyente1;
     private ActionListener oyente2;
     private ActionListener oyente3;
-    private ActionListener oyente4;
-    private ActionListener oyente5;
-    
 
-    /*
-    List<Movie> movies = new ArrayList<>();
-    int index = 0;
-    public Ventana(List<Movie> movies) {
-        this.movies = movies;
-        if (!this.movies.isEmpty()) {
-            final FondoPanel fondo = new FondoPanel(movies.get(index).getPicture());
-            this.setContentPane(fondo);
-        }
-     */
     //Elementos de la ventana
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public VentanaInicial() {
         setTitle("MOVIES APP");
 
@@ -49,37 +35,6 @@ public class VentanaInicial extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    /*
-    public class FondoPanel extends JPanel {
-        final String imageURL;
-        FondoPanel(String url) {
-            this.imageURL = url;
-        }
-        private Image image;
-        private final String basePath = "https://image.tmdb.org/t/p/original";
-        @Override
-        public void paint(Graphics g) {
-            URL url = null;
-            try {
-                url = new URL(basePath + imageURL);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(Ventana.class.getName())
-                        .log(Level.SEVERE, null, ex);
-            }
-            BufferedImage c = null;
-            try {
-                c = ImageIO.read(url);
-            } catch (IOException ex) {
-                Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ImageIcon imageIcon = new ImageIcon(c);
-            this.image = imageIcon.getImage();
-            g.drawImage(this.image, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
-     */
     //Metodo mostrar elementos gráficos
     private void MostrarElementos() {
 
@@ -103,40 +58,9 @@ public class VentanaInicial extends JFrame {
         botonMuestraDatos.setForeground(Color.BLACK);
         botonMuestraDatos.setBounds(600, 480, 160, 60);
 
-        botonDatosCine = new JButton("DATOS CINE");
-        botonDatosCine.setForeground(Color.BLACK);
-        botonDatosCine.setBounds(370, 480, 160, 60);
-
-        botonDatosSala = new JButton("DATOS SALA");
-        botonDatosSala.setForeground(Color.BLACK);
-        botonDatosSala.setBounds(20, 20, 160, 60);
-
-//        
-//        label2 = new JLabel("SEGUNDA PELICULA");
-//        label2.setForeground(Color.WHITE);
-//        label2.setBounds(170, 428, 800, 100);
-//        
-//        label3 = new JLabel("TERCERA PELICULA");
-//        label3.setForeground(Color.WHITE);
-//        label3.setBounds(340, 428, 800, 100);
-//        
-//        label4 = new JLabel("CUARTA PELICULA");
-//        label4.setForeground(Color.WHITE);
-//        label4.setBounds(500, 428, 800, 100);
-//        
-//        label5 = new JLabel("QUINTA PELICULA");
-//        label5.setForeground(Color.WHITE);
-//        label5.setBounds(670, 428, 800, 100);
-//       
         panel.add(botonDatosPeli);
         panel.add(botonDatosActores);
         panel.add(botonMuestraDatos);
-        panel.add(botonDatosCine);
-        panel.add(botonDatosSala);
-//         panel.add(label2);
-//         panel.add(label3);
-//         panel.add(label4);
-//         panel.add(label5);
 
         //Datos de ventana
         this.setSize(800, 600);
@@ -223,40 +147,5 @@ public class VentanaInicial extends JFrame {
             vp.setLocationRelativeTo(null);
         };
         botonMuestraDatos.addActionListener(oyente3);
-
-        oyente4 = (ActionEvent e) -> {
-            VentanaDatosCine vent5 = new VentanaDatosCine();
-            
-            vent5.setVisible(true);
-            setVisible(false);
-        };
-        botonDatosCine.addActionListener(oyente4);
-        
-        
-         oyente5 = (ActionEvent e) -> {
-             VentanaSalaInfo vent6 = new VentanaSalaInfo();
-             
-             vent6.setVisible(true);
-             setVisible(false);
-        };
-        botonDatosSala.addActionListener(oyente5);
-        
-
     }
 }
-
-
-/*
-class MovieTitle extends JFrame {
-    public String text;
-    public MovieTitle(String text) {
-        this.text = text;
-        this.create();
-    }
-    JLabel label;
-    public void create() {
-        this.label = new javax.swing.JLabel(this.text);
-        label.setBounds(175, 100, 200, 100);
-    }
-}
- */

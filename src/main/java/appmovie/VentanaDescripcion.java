@@ -1,5 +1,4 @@
 package appmovie;
-
     
 import java.awt.Color;
 import java.awt.Image;
@@ -13,7 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -34,7 +32,6 @@ public final class VentanaDescripcion extends JFrame implements ActionListener{
     private JButton comentar;
     private JButton atras;
     private JTextArea resumenPeli;
-    private JTextArea recibirComentario;
     private JTextArea cajaActores;
     private JTextArea cajaDirector;
     private JTextField tituloPeli; 
