@@ -207,6 +207,8 @@ public class VentanaDatosPelicula extends JFrame {
             movie.setHas_subtitles(checkbox.isSelected());
 
             this.requests.saveMovie(movie);
+            
+            // TODO: COLOCAR ALERTA DE PELICULA GUARDADA
 
         };
 

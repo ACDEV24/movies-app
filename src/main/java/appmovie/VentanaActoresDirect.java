@@ -152,6 +152,7 @@ public class VentanaActoresDirect extends JFrame {
         oyente1 = (ActionEvent e) -> {
 
             if (labelIdPelicula.getText().length() == 0) {
+                // TODO: COLOCAR ALERTA DE SELECCIONAR PELICULA ES OBLIGATORIO
                 return;
             }
 
@@ -166,6 +167,8 @@ public class VentanaActoresDirect extends JFrame {
             cast.setDiriged_movies(Integer.parseInt(cjaPeliDiri.getText()));
 
             this.requests.saveCast(cast);
+            
+            // TODO: COLOCAR ALERTA DE ACTOR GUARDADO
         };
 
         btonGuardainfo.addActionListener(oyente1);
