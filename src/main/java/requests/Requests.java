@@ -43,8 +43,35 @@ public class Requests {
         if(jsonArray == null) {
             jsonArray = new JSONArray();
         }
+        
+        int index = -1;
+        
+        for (int i = 0; i < jsonArray.size(); i++) {
+            
+            final Object object = jsonArray.get(i);
 
-        jsonArray.add(movieJson);
+            Movie tempMovie = new Movie();
+
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            
+            try {
+                tempMovie = mapper.readValue(object.toString(), Movie.class);
+            } catch (IOException ex) {
+                continue;
+            }
+            
+            if((movie.getId() == null ? tempMovie.getId() == null : movie.getId().equals(tempMovie.getId()))) {
+                index = i;
+            }
+        }
+        
+        if(index != -1) {
+            jsonArray.remove(index);
+            jsonArray.add(movieJson);
+        } else {
+            jsonArray.add(movieJson);
+        }
 
         try (FileWriter file = new FileWriter("movies.json")) {
 

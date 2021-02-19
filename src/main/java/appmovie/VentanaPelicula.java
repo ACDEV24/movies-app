@@ -1,5 +1,7 @@
 package appmovie;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -12,13 +14,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import models.Movie;
 
-public class VentanaPelicula extends JFrame implements ActionListener{
+public final class VentanaPelicula extends JFrame {
     
+    private JButton atras;
     private JButton btn1;
     private JButton btn2;
     private JButton btn3;
     private JButton btn4;
     private JButton btn5;
+    
+    ActionListener back;
     
     Movie peli1;
     Movie peli2;
@@ -36,44 +41,64 @@ public class VentanaPelicula extends JFrame implements ActionListener{
         
         setLayout(null);
         
+        atras = new JButton("←");
+        atras.setBounds(20,20,48,35);
+        add(atras);
+                
         if(this.peli1 != null) {
             btn1 = new JButton(getImageIcon(peli1.getPicture()));
-            btn1.setBounds(100,50,90,135); 
-            btn1.addActionListener(this);
+            btn1.setBounds(130,70,90,135); 
+            btn1.addActionListener((ActionEvent e) -> {
+                this.navigate(this.peli1);
+            });
             add(btn1);
         }
-        if(this.peli3 != null) {
+        if(this.peli2 != null) {
             btn2 = new JButton(getImageIcon(peli2.getPicture()));
-            btn2.setBounds(100,270,90,135); 
-            btn2.addActionListener(this);
+            btn2.setBounds(130,345,90,135); 
+            btn2.addActionListener((ActionEvent e) -> {
+                this.navigate(this.peli2);
+            });
             add(btn2);
         }
         if(this.peli3 != null) {
             btn3 = new JButton(getImageIcon(peli3.getPicture()));
-            btn3.setBounds(385,50,90,135); 
-            btn3.addActionListener(this);
+            btn3.setBounds(465,70,90,135); 
+            btn3.addActionListener((ActionEvent e) -> {
+                this.navigate(this.peli3);
+            });
             add(btn3);
         }
         if(this.peli4 != null) {
             btn4 = new JButton(getImageIcon(peli4.getPicture()));
-            btn4.setBounds(385,270,90,135); 
-            btn4.addActionListener(this);
+            btn4.setBounds(465,345,90,135); 
+            btn4.addActionListener((ActionEvent e) -> {
+                this.navigate(this.peli4);
+            });
             add(btn4);
         }
         if(this.peli5 != null) {
             btn5 = new JButton(getImageIcon(peli5.getPicture()));
-            btn5.setBounds(245,164,90,135); 
-            btn5.addActionListener(this);
+            btn5.setBounds(300,211,90,135); 
+            btn5.addActionListener((ActionEvent e) -> {
+                this.navigate(this.peli5);
+            });
             add(btn5);
         }
         
+        back = (ActionEvent e) -> {
+            setVisible(false);  
+        };
+
+        atras.addActionListener(back);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
+        
     }
     
     public VentanaPelicula() {}
     
+    //Metodo para qu elos botones reciban la imagen por url
     public ImageIcon getImageIcon(String picture) {
-
         URL url = null;
         try {
             url = new URL(picture);
@@ -82,35 +107,32 @@ public class VentanaPelicula extends JFrame implements ActionListener{
         }
 
         BufferedImage c = null;
-
         try {
             c = ImageIO.read(url);
         } catch (IOException ex) {
             return null;
         }
 
-        final ImageIcon imageIcon = new ImageIcon(c);
-
+        ImageIcon imageIcon = new ImageIcon(c);
+        
+        Image image = imageIcon.getImage();
+        Image newimg = image.getScaledInstance(90, 135,  java.awt.Image.SCALE_SMOOTH);
+        
+        imageIcon = new ImageIcon(newimg);
         return imageIcon;
     }
-    // Acion del boton que llevara a la descripcion de la pelicula 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
+
+    // Accion del boton que llevara a la descripcion de la pelicula 
+    public void navigate(Movie movie) {
         
-        //VentanaDescripcion vm = new VentanaDescripcion();
-        //this.setSize(700, 600);
-        //this.setLocationRelativeTo(null);
-        //this.setVisible(false);
-        //this.setResizable(false);
+        VentanaDescripcion vd = new VentanaDescripcion(movie);
+        vd.setBounds(0,0, 730, 600);
+        vd.setVisible(true);
+        vd.setResizable(false);
+        vd.setBackground(Color.LIGHT_GRAY);
+        vd.setLocationRelativeTo(null);
+//        this.setVisible(false);
         
     }
     
-    public static void main(String []args){
-    
-        VentanaPelicula v = new VentanaPelicula();
-        v.setBounds(0,0,605,500);
-        v.setVisible(true);
-        v.setResizable(true);
-        v.setLocationRelativeTo(null);
-    }
 }

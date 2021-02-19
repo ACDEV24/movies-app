@@ -1,6 +1,9 @@
 package models;
 
 import com.fasterxml.jackson.annotation.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import org.json.simple.JSONObject;
 
@@ -18,7 +21,8 @@ public final class Movie {
     private String origin_country;
     private String duration;
     private DefaultListModel<Cast> casts;
-    private String production_date;
+    private DefaultListModel<String> comments;
+    public String production_date;
     private String classification;
 
     @JsonCreator
@@ -35,6 +39,7 @@ public final class Movie {
         @JsonProperty("origin_country") String origin_country,
         @JsonProperty("duration") String duration,
         @JsonProperty("casts") DefaultListModel<Cast> casts,
+        @JsonProperty("comments") String[] comments,
         @JsonProperty("production_date") String production_date,
         @JsonProperty("classification") String classification
     ){
@@ -50,6 +55,7 @@ public final class Movie {
         this.origin_country = origin_country;
         this.duration = duration;
         this.casts = casts;
+        this.setComments(comments);
         this.production_date = production_date;
         this.classification = classification;
     }
@@ -70,6 +76,14 @@ public final class Movie {
         movie.put("origin_country", this.origin_country);
         movie.put("duration", this.duration);
         movie.put("production_date", this.production_date);
+        
+        List<String> commentsString = new ArrayList<>();
+        
+        for(int i = 0; i < this.comments.size(); i++) {
+            commentsString.add(this.comments.get(i));
+        }
+
+        movie.put("comments", commentsString);
         movie.put("classification", this.classification);
         
         return movie;
@@ -187,6 +201,36 @@ public final class Movie {
 
     public void setCasts(DefaultListModel<Cast> casts) {
         this.casts = casts;
+    }
+    
+    public DefaultListModel<String> getComments() {
+        return comments;
+    }
+
+    public void setComments(String[] commentsArray) {
+        DefaultListModel<String> comments = new DefaultListModel<>();
+        
+        int counter = -1;
+        for (String comment : commentsArray) {
+            counter++;
+            comments.add(counter, comment);
+        }
+        
+        this.comments = comments;
+    }
+    
+    public Movie addComment(String comment) {
+
+        this.comments.add(this.comments.getSize(), comment);
+        
+        return this;
+    }
+    
+    static <T> T[] append(T[] arr, T element) {
+        final int N = arr.length;
+        arr = Arrays.copyOf(arr, N + 1);
+        arr[N] = element;
+        return arr;
     }
     
     @Override

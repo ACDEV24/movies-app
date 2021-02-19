@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -184,6 +185,13 @@ public class VentanaDatosPelicula extends JFrame {
         this.setResizable(false);
 
         oyente1 = (ActionEvent e) -> {
+
+            final DefaultListModel<Movie> movies = this.requests.getAllMovies();
+            
+            if(movies != null && movies.size() == 4) {
+                // TODO: COLOCAR ALERTA DE QUE MAXIMO 5 PELICULAS
+                return;
+            }
 
             final Movie movie = new Movie();
             final String uuid = UUID.randomUUID().toString().replace("-", "");
