@@ -224,7 +224,7 @@ public class VentanaDatosPelicula extends JFrame {
             cjaFechaEstreno.setText("");
             cjaResumenPeli.setText("");
             cjaURLimagen.setText("");
-            checkbox.setText("");
+            checkbox.setSelected(false);
         };
 
         btonBorrarInfo.addActionListener(oyente2);

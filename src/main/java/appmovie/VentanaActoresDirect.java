@@ -174,6 +174,8 @@ public class VentanaActoresDirect extends JFrame {
         btonGuardainfo.addActionListener(oyente1);
 
         oyente2 = (ActionEvent e) -> {
+            
+            // TODO: LIMPIAR CAMPOS
         };
 
         btonBorrarInfo.addActionListener(oyente2);
