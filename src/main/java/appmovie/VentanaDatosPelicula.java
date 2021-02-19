@@ -215,6 +215,16 @@ public class VentanaDatosPelicula extends JFrame {
         btonGuardarInfo.addActionListener(oyente1);
 
         oyente2 = (ActionEvent e) -> {
+            cjaTituloOriginal.setText("");
+            cjaGénero.setText("");
+            cjaIdioma.setText("");
+            cjaAñoProduct.setText("");
+            cjaClasificación.setText("");
+            cjaDuraciónHoras.setText("");
+            cjaFechaEstreno.setText("");
+            cjaResumenPeli.setText("");
+            cjaURLimagen.setText("");
+            checkbox.setText("");
         };
 
         btonBorrarInfo.addActionListener(oyente2);
