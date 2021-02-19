@@ -79,8 +79,10 @@ public final class Movie {
         
         List<String> commentsString = new ArrayList<>();
         
-        for(int i = 0; i < this.comments.size(); i++) {
-            commentsString.add(this.comments.get(i));
+        if(this.comments != null) {
+            for(int i = 0; i < this.comments.size(); i++) {
+                commentsString.add(this.comments.get(i));
+            }
         }
 
         movie.put("comments", commentsString);
