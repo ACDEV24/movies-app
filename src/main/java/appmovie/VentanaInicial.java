@@ -201,6 +201,14 @@ public class VentanaInicial extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                VentanaPelicula vp = new VentanaPelicula();
+                vp = new VentanaPelicula();
+		vp.setBounds(0,0,700, 600);
+                vp.setVisible(true);
+                vp.setResizable(false);
+                vp.setBackground(Color.LIGHT_GRAY);
+                vp.setLocationRelativeTo(null);
+                setVisible(false);
             }
         };
         botonMuestraDatos.addActionListener(oyente3);
